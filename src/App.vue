@@ -99,7 +99,7 @@
             <!-- main content -->
             <view-box ref="viewBox" :body-padding-top="isShowNav ? '46px' : '0'" body-padding-bottom="55px">
 
-                <x-header v-if="isShowNav" slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
+                <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
                     <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
                         <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
                     </span>
@@ -548,4 +548,25 @@ body {
 .flex-function-label {
   margin-top: 30px;
 }
+// .van-notice-bar__right-icon {
+//   top: 7px;
+//   right: 15px;
+//   font-size: 16px;
+//   position: absolute;
+// }
+// .van-notice-bar {
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: flex;
+//   height: 30px;
+//   padding: 0 15px;
+//   font-size: 14px;
+//   line-height: 24px;
+//   position: relative;
+//   -webkit-box-align: center;
+//   -webkit-align-items: center;
+//   align-items: center;
+//   color: #ed6a0c;
+//   background-color: #fffbe8;
+// }
 </style>

@@ -97,7 +97,7 @@
             </div>
 
             <!-- main content -->
-            <view-box ref="viewBox" :body-padding-top="isShowNav ? '46px' : '0'" body-padding-bottom="55px">
+            <view-box ref="viewBox" body-padding-bottom="55px">
 
                 <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
                     <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
@@ -557,8 +557,8 @@ body {
 }
 .position-bottom {
   position: fixed;
-  top: 120px;
-  left: 1%;
+  top: 60px;
+  //left: 1%;
 }
 @-webkit-keyframes myfirst {
   0%,

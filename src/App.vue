@@ -95,57 +95,82 @@
                     <radio v-model="showPlacement" :options="['left', 'right']" @on-change="onPlacementChange"></radio>
                 </group> -->
             </div>
-
             <!-- main content -->
             <view-box ref="viewBox" body-padding-bottom="55px">
-
                 <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
                     <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
                         <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
                     </span>
                 </x-header> -->
-
                 <!-- remember to import BusPlugin in main.js if you use components: x-img and sticky -->
-
-                <transition>
-                    <van-swipe :autoplay="3000">
-                        <van-swipe-item v-for="(image, index) in images" :key="index">
-                            <img :src="image" width="100%" style="overflow:hidden" />
-                        </van-swipe-item>
-                    </van-swipe>
-
-                </transition>
-                <transition>
-                    <div class="next">
-                        <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                <div v-if="isShowFunction">
+                    <transition>
+                        <van-swipe :autoplay="3000">
+                            <van-swipe-item v-for="(image, index) in images" :key="index">
+                                <img :src="image" width="100%" style="overflow:hidden" />
+                            </van-swipe-item>
+                        </van-swipe>
+                    </transition>
+                    <transition>
+                        <div class="next">
+                            <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                        </div>
+                    </transition>
+                    <transition>
+                        <van-notice-bar mode="closeable">
+                            华润医药商业-财务报账系统将于2019年3月份正式上线...
+                        </van-notice-bar>
+                        <!-- <router-view class="router-view"></router-view> -->
+                    </transition>
+                    <transition>
+                        <grid :cols="3">
+                            <grid-item :label="item.title" v-for="item in functionList">
+                                <img slot="icon" :src="item.icon">
+                            </grid-item>
+                        </grid>
+                    </transition>
+                </div>
+                <div style="text-align:center;marginTop:100%" v-if="isShowProcess">
+                    <p style="text-align:center">
+                        暂无流程查询
+                    </p>
+                </div>
+                <div class="my-module" v-if="isShowMy">
+                    <div class="my-module-border">
+                        <div class="my-module-img">
+                            <img src="../static/hsf.jpg" alt="">
+                            <div class="my-module-text">
+                                <p>husanfeng</p>
+                                <p>男 26</p>
+                                <p>财务报账项目组前端开发</p>
+                            </div>
+                        </div>
                     </div>
-                </transition>
-                <transition>
-                    <van-notice-bar mode="closeable">
-                        华润医药商业-财务报账系统将于2019年3月份正式上线...
-                    </van-notice-bar>
-                    <!-- <router-view class="router-view"></router-view> -->
-                </transition>
-                <transition>
-                    <grid :cols="3">
-                        <grid-item :label="item.title" v-for="item in functionList">
-                            <img slot="icon" :src="item.icon">
-                        </grid-item>
-                    </grid>
-                </transition>
-
+                    <div>
+                        <group>
+                            <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
+                            </cell>
+                            <cell title="邮箱:" value-align="left" value="123@163.com">
+                            </cell>
+                            <cell title="登录名:" value-align="left" value="husanfeng">
+                            </cell>
+                            <cell title="登录密码:" value="123456" value-align="left">
+                            </cell>
+                        </group>
+                    </div>
+                </div>
                 <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-                    <tabbar-item selected>
+                    <tabbar-item selected @on-item-click="onItemClickFunction">
                         <img slot="icon" src="../static/function_normal.png">
                         <img slot="icon-active" src="../static/function_pressed.png">
                         <span slot="label">首页</span>
                     </tabbar-item>
-                    <tabbar-item>
+                    <tabbar-item @on-item-click="onItemClickProcess">
                         <img slot="icon" src="../static/order_normal.png">
                         <img slot="icon-active" src="../static/order_pressed.png">
-                        <span slot="label">订单</span>
+                        <span slot="label">流程</span>
                     </tabbar-item>
-                    <tabbar-item>
+                    <tabbar-item @on-item-click="onItemClickMy">
                         <img slot="icon" src="../static/my_normal.png">
                         <img slot="icon-active" src="../static/my_pressed.png">
                         <span slot="label">我的</span>
@@ -224,6 +249,9 @@ export default {
   data() {
     return {
       title: "财务报账系统",
+      isShowFunction: true,
+      isShowProcess: false,
+      isShowMy: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -248,9 +276,20 @@ export default {
     };
   },
   methods: {
-    onItemClick(id) {
-      debugger;
-      console.log(id);
+    onItemClickFunction() {
+      this.isShowFunction = true;
+      this.isShowProcess = false;
+      this.isShowMy = false;
+    },
+    onItemClickProcess() {
+      this.isShowFunction = false;
+      this.isShowProcess = true;
+      this.isShowMy = false;
+    },
+    onItemClickMy() {
+      this.isShowFunction = false;
+      this.isShowProcess = false;
+      this.isShowMy = true;
     },
     onShowModeChange(val) {
       /** hide drawer before changing showMode **/
@@ -533,10 +572,6 @@ body {
 .flex-logo {
   text-align: center;
   margin-top: 30px;
-  //   color: #fff;
-  //   background-color: #20b907;
-  //   border-radius: 4px;
-  //   background-clip: padding-box;
   img {
     height: 120px;
     width: 120px;
@@ -617,7 +652,6 @@ body {
     }
   }
 }
-
 .van-swipe {
   overflow: hidden;
   position: relative;
@@ -625,25 +659,49 @@ body {
   user-select: none;
   line-height: 0px;
 }
-// .van-notice-bar__right-icon {
-//   top: 7px;
-//   right: 15px;
-//   font-size: 16px;
-//   position: absolute;
-// }
-// .van-notice-bar {
-//   display: -webkit-box;
-//   display: -webkit-flex;
-//   display: flex;
-//   height: 30px;
-//   padding: 0 15px;
-//   font-size: 14px;
-//   line-height: 24px;
-//   position: relative;
-//   -webkit-box-align: center;
-//   -webkit-align-items: center;
-//   align-items: center;
-//   color: #ed6a0c;
-//   background-color: #fffbe8;
-// }
+
+.my-module {
+  height: 100%;
+  background-color: #f8f5f5;
+  .my-module-border {
+    background-color: #fff;
+    margin: 5px;
+    height: 150px;
+    border: 1px solid #948c8c;
+    border-radius: 25px;
+    .my-module-img {
+      text-align: left;
+      margin: 25px 0px 0px 5px;
+      img {
+        height: 100px;
+        width: 100px;
+        border: 1px solid #948c8c;
+        border-radius: 100px;
+      }
+      .my-module-text {
+        float: right;
+        margin: 5px 50px 0px 0px;
+      }
+    }
+  }
+}
+.weui-cells {
+  /* margin-top: 1.17647059em; */
+  background-color: #ffffff !important;
+  /* line-height: 1.41176471; */
+  font-size: 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+.weui-cell {
+  margin: 10px !important;
+  padding: 10px 15px !important;
+  position: relative !important;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  align-items: center !important;
+}
 </style>

@@ -99,26 +99,32 @@
             <!-- main content -->
             <view-box ref="viewBox" :body-padding-top="isShowNav ? '46px' : '0'" body-padding-bottom="55px">
 
-                <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
+                <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
                     <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
                         <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
                     </span>
-                </x-header>
+                </x-header> -->
 
                 <!-- remember to import BusPlugin in main.js if you use components: x-img and sticky -->
-                <transition>
-                    <van-notice-bar mode="closeable">
-                        华润医药商业-财务报账系统将于2019年3月份正式上线...
-                    </van-notice-bar>
 
-                    <!-- <router-view class="router-view"></router-view> -->
-                </transition>
                 <transition>
                     <van-swipe :autoplay="3000">
                         <van-swipe-item v-for="(image, index) in images" :key="index">
                             <img :src="image" width="100%" style="overflow:hidden" />
                         </van-swipe-item>
                     </van-swipe>
+
+                </transition>
+                <transition>
+                    <div class="next">
+                        <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                    </div>
+                </transition>
+                <transition>
+                    <van-notice-bar mode="closeable">
+                        华润医药商业-财务报账系统将于2019年3月份正式上线...
+                    </van-notice-bar>
+                    <!-- <router-view class="router-view"></router-view> -->
                 </transition>
                 <transition>
                     <grid :cols="3">
@@ -127,6 +133,7 @@
                         </grid-item>
                     </grid>
                 </transition>
+
                 <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
                     <tabbar-item selected>
                         <img slot="icon" src="../static/function_normal.png">
@@ -547,6 +554,68 @@ body {
 }
 .flex-function-label {
   margin-top: 30px;
+}
+.position-bottom {
+  position: fixed;
+  top: 120px;
+  left: 1%;
+}
+@-webkit-keyframes myfirst {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+  60% {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+}
+@keyframes myfirst {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  40% {
+    -moz-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    -webkit-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+  60% {
+    -moz-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+}
+.next {
+  // .position-bottom;
+  .setarrow {
+    // position:relative;
+    .position-bottom;
+    font-size: 40px !important;
+    color: rgba(243, 244, 247, 0.8);
+    opacity: 0.8;
+    cursor: pointer;
+    animation: myfirst 5s infinite;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
 }
 // .van-notice-bar__right-icon {
 //   top: 7px;

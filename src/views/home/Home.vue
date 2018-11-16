@@ -1,33 +1,32 @@
 <template>
-    <div id="app" style="height:100%;">
+    <div style="height:100%;">
         <div>
             <loading v-model="isLoading"></loading>
         </div>
-        <div>
+        <!-- <div>
             <actionsheet :menus="menus" v-model="showMenu" @on-click-menu="changeLocale"></actionsheet>
-        </div>
-        <div>
-            <router-view></router-view>
-        </div>
+        </div> -->
+
         <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
             <!-- drawer content -->
             <div slot="drawer">
                 <flexbox @click="">
                     <flexbox-item>
                         <div class="flex-logo">
-                            <img src="../static/hsf.jpg" />
+                            <img src="../../../static/hsf.jpg" />
                         </div>
                     </flexbox-item>
                 </flexbox>
                 <flexbox @click.native="feedbackClick">
                     <flexbox-item>
                         <div class="flex-function-img">
-                            <img src="../static/u234.png" />
+                            <img src="../../../static/u234.png" />
                         </div>
                     </flexbox-item>
                     <flexbox-item>
                         <div class="flex-function-label">
-                            意见反馈
+                            <router-link :to="{ path: 'feedback-page'}"> 意见反馈</router-link>
+
                         </div>
                     </flexbox-item>
                 </flexbox>
@@ -35,7 +34,7 @@
                 <flexbox>
                     <flexbox-item>
                         <div class="flex-function-img">
-                            <img src="../static/u236.png" />
+                            <img src="../../../static/u236.png" />
                         </div>
                     </flexbox-item>
                     <flexbox-item>
@@ -48,7 +47,7 @@
                 <flexbox>
                     <flexbox-item>
                         <div class="flex-function-img">
-                            <img src="../static/u238.png" />
+                            <img src="../../../static/u238.png" />
                         </div>
                     </flexbox-item>
                     <flexbox-item>
@@ -61,7 +60,7 @@
                 <flexbox>
                     <flexbox-item>
                         <div class="flex-function-img">
-                            <img src="../static/u240.png" />
+                            <img src="../../../static/u240.png" />
                         </div>
                     </flexbox-item>
                     <flexbox-item>
@@ -74,7 +73,7 @@
                 <flexbox>
                     <flexbox-item>
                         <div class="flex-function-img">
-                            <img src="../static/u242.png" />
+                            <img src="../../../static/u242.png" />
                         </div>
                     </flexbox-item>
                     <flexbox-item>
@@ -100,12 +99,6 @@
             </div>
             <!-- main content -->
             <view-box ref="viewBox" body-padding-bottom="55px">
-                <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
-                    <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
-                        <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-                    </span>
-                </x-header> -->
-                <!-- remember to import BusPlugin in main.js if you use components: x-img and sticky -->
                 <div v-if="isShowFunction">
                     <transition>
                         <van-swipe :autoplay="3000">
@@ -141,7 +134,7 @@
                 <div class="my-module" v-if="isShowMy">
                     <div class="my-module-border">
                         <div class="my-module-img">
-                            <img src="../static/hsf.jpg" alt="">
+                            <img src="../../../static/hsf.jpg" alt="">
                             <div class="my-module-text">
                                 <p>husanfeng</p>
                                 <p>男 26</p>
@@ -165,24 +158,26 @@
 
                 <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
                     <tabbar-item selected @on-item-click="onItemClickFunction">
-                        <img slot="icon" src="../static/function_normal.png">
-                        <img slot="icon-active" src="../static/function_pressed.png">
+                        <img slot="icon" src="../../../static/function_normal.png">
+                        <img slot="icon-active" src="../../../static/function_pressed.png">
                         <span slot="label">首页</span>
                     </tabbar-item>
                     <tabbar-item @on-item-click="onItemClickProcess">
-                        <img slot="icon" src="../static/order_normal.png">
-                        <img slot="icon-active" src="../static/order_pressed.png">
+                        <img slot="icon" src="../../../static/order_normal.png">
+                        <img slot="icon-active" src="../../../static/order_pressed.png">
                         <span slot="label">流程</span>
                     </tabbar-item>
                     <tabbar-item @on-item-click="onItemClickMy">
-                        <img slot="icon" src="../static/my_normal.png">
-                        <img slot="icon-active" src="../static/my_pressed.png">
+                        <img slot="icon" src="../../../static/my_normal.png">
+                        <img slot="icon-active" src="../../../static/my_pressed.png">
                         <span slot="label">我的</span>
                     </tabbar-item>
                 </tabbar>
 
             </view-box>
+
         </drawer>
+        <!-- <router-view /> -->
     </div>
 </template>
 
@@ -338,27 +333,27 @@ export default {
     this.functionList = [
       {
         title: "我的申请",
-        icon: "../static/icon_ehr_tool_blood_pressure.png"
+        icon: "../../../static/icon_ehr_tool_blood_pressure.png"
       },
       {
         title: "待审批",
-        icon: "../static/icon_ehr_tool_body_temerature.png"
+        icon: "../../../static/icon_ehr_tool_body_temerature.png"
       },
       {
         title: "已审批",
-        icon: "../static/icon_ehr_tool_diet.png"
+        icon: "../../../static/icon_ehr_tool_diet.png"
       },
       {
         title: "已提交",
-        icon: "../static/icon_ehr_tool_glucose.png"
+        icon: "../../../static/icon_ehr_tool_glucose.png"
       },
       {
         title: "草稿单",
-        icon: "../static/icon_ehr_tool_heart_rate.png"
+        icon: "../../../static/icon_ehr_tool_heart_rate.png"
       },
       {
         title: "作废单",
-        icon: "../static/icon_ehr_tool_sport.png"
+        icon: "../../../static/icon_ehr_tool_sport.png"
       }
     ];
   },

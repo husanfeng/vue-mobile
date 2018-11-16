@@ -617,6 +617,14 @@ body {
     }
   }
 }
+
+.van-swipe {
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  line-height: 0px;
+}
 // .van-notice-bar__right-icon {
 //   top: 7px;
 //   right: 15px;

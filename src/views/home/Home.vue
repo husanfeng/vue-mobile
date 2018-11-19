@@ -1,183 +1,61 @@
 <template>
     <div style="height:100%;">
-        <div>
-            <loading v-model="isLoading"></loading>
+        <div v-if="isShowFunction">
+            <transition>
+                <van-swipe :autoplay="3000">
+                    <van-swipe-item v-for="(image, index) in images" :key="index">
+                        <img :src="image" width="100%" style="overflow:hidden" />
+                    </van-swipe-item>
+                </van-swipe>
+            </transition>
+            <transition>
+                <div class="next">
+                    <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                </div>
+            </transition>
+            <transition>
+                <van-notice-bar mode="closeable">
+                    华润医药商业-财务报账系统将于2019年3月份正式上线...
+                </van-notice-bar>
+
+            </transition>
+            <transition>
+                <grid :cols="3">
+                    <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
+                        <img slot="icon" :src="item.icon">
+                    </grid-item>
+                </grid>
+            </transition>
         </div>
-        <!-- <div>
-            <actionsheet :menus="menus" v-model="showMenu" @on-click-menu="changeLocale"></actionsheet>
-        </div> -->
-
-        <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
-            <!-- drawer content -->
-            <div slot="drawer">
-                <flexbox @click="">
-                    <flexbox-item>
-                        <div class="flex-logo">
-                            <img src="../../../static/hsf.jpg" />
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-                <flexbox @click.native="feedbackClick">
-                    <flexbox-item>
-                        <div class="flex-function-img">
-                            <img src="../../../static/u234.png" />
-                        </div>
-                    </flexbox-item>
-                    <flexbox-item>
-                        <div class="flex-function-label">
-                            <router-link :to="{ path: 'feedback-page'}"> 意见反馈</router-link>
-
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-
-                <flexbox>
-                    <flexbox-item>
-                        <div class="flex-function-img">
-                            <img src="../../../static/u236.png" />
-                        </div>
-                    </flexbox-item>
-                    <flexbox-item>
-                        <div class="flex-function-label">
-                            帮助中心
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-
-                <flexbox>
-                    <flexbox-item>
-                        <div class="flex-function-img">
-                            <img src="../../../static/u238.png" />
-                        </div>
-                    </flexbox-item>
-                    <flexbox-item>
-                        <div class="flex-function-label">
-                            设置
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-
-                <flexbox>
-                    <flexbox-item>
-                        <div class="flex-function-img">
-                            <img src="../../../static/u240.png" />
-                        </div>
-                    </flexbox-item>
-                    <flexbox-item>
-                        <div class="flex-function-label">
-                            注销登陆
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-
-                <flexbox>
-                    <flexbox-item>
-                        <div class="flex-function-img">
-                            <img src="../../../static/u242.png" />
-                        </div>
-                    </flexbox-item>
-                    <flexbox-item>
-                        <div class="flex-function-label">
-                            关于
-                        </div>
-                    </flexbox-item>
-                </flexbox>
-                <!-- <group title="" style="margin-top:20px;">
-                    <cell title="Demo" link="/" value="" @click.native="drawerVisibility = false">
-                    </cell> -->
-                <!-- <cell title="Buy me a coffee" link="project/donate" @click.native="drawerVisibility = false">
-                    </cell>
-                    <cell title="Github" link="http://github.com/airyland/vux" value="Star me" @click.native="drawerVisibility = false">
-                    </cell> -->
-                <!-- </group> -->
-                <!-- <group title="showMode">
-                    <radio v-model="showMode" :options="['push', 'overlay']" @on-change="onShowModeChange"></radio>
-                </group>
-                <group title="placement">
-                    <radio v-model="showPlacement" :options="['left', 'right']" @on-change="onPlacementChange"></radio>
-                </group> -->
+        <div v-if="isShowProcess" class="process-module" style="text-align:center;marginTop:80%">
+            <p style="text-align:center">
+                暂无流程查询
+            </p>
+        </div>
+        <div v-if="isShowMy" class="my-module">
+            <div class="my-module-border">
+                <div class="my-module-img">
+                    <img src="../../../static/hsf.jpg" alt="">
+                    <div class="my-module-text">
+                        <p>husanfeng</p>
+                        <p>男 26</p>
+                        <p>财务报账项目组前端开发</p>
+                    </div>
+                </div>
             </div>
-            <!-- main content -->
-            <view-box ref="viewBox" body-padding-bottom="55px">
-                <div v-if="isShowFunction">
-                    <transition>
-                        <van-swipe :autoplay="3000">
-                            <van-swipe-item v-for="(image, index) in images" :key="index">
-                                <img :src="image" width="100%" style="overflow:hidden" />
-                            </van-swipe-item>
-                        </van-swipe>
-                    </transition>
-                    <transition>
-                        <div class="next">
-                            <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
-                        </div>
-                    </transition>
-                    <transition>
-                        <van-notice-bar mode="closeable">
-                            华润医药商业-财务报账系统将于2019年3月份正式上线...
-                        </van-notice-bar>
-
-                    </transition>
-                    <transition>
-                        <grid :cols="3">
-                            <grid-item :label="item.title" v-for="item in functionList">
-                                <img slot="icon" :src="item.icon">
-                            </grid-item>
-                        </grid>
-                    </transition>
-                </div>
-                <div class="process-module" style="text-align:center;marginTop:80%" v-if="isShowProcess">
-                    <p style="text-align:center">
-                        暂无流程查询
-                    </p>
-                </div>
-                <div class="my-module" v-if="isShowMy">
-                    <div class="my-module-border">
-                        <div class="my-module-img">
-                            <img src="../../../static/hsf.jpg" alt="">
-                            <div class="my-module-text">
-                                <p>husanfeng</p>
-                                <p>男 26</p>
-                                <p>财务报账项目组前端开发</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <group>
-                            <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
-                            </cell>
-                            <cell title="邮箱:" value-align="left" value="123@163.com">
-                            </cell>
-                            <cell title="登录名:" value-align="left" value="husanfeng">
-                            </cell>
-                            <cell title="登录密码:" value="123456" value-align="left">
-                            </cell>
-                        </group>
-                    </div>
-                </div>
-
-                <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-                    <tabbar-item selected @on-item-click="onItemClickFunction">
-                        <img slot="icon" src="../../../static/function_normal.png">
-                        <img slot="icon-active" src="../../../static/function_pressed.png">
-                        <span slot="label">首页</span>
-                    </tabbar-item>
-                    <tabbar-item @on-item-click="onItemClickProcess">
-                        <img slot="icon" src="../../../static/order_normal.png">
-                        <img slot="icon-active" src="../../../static/order_pressed.png">
-                        <span slot="label">流程</span>
-                    </tabbar-item>
-                    <tabbar-item @on-item-click="onItemClickMy">
-                        <img slot="icon" src="../../../static/my_normal.png">
-                        <img slot="icon-active" src="../../../static/my_pressed.png">
-                        <span slot="label">我的</span>
-                    </tabbar-item>
-                </tabbar>
-
-            </view-box>
-
-        </drawer>
-        <!-- <router-view /> -->
+            <div>
+                <group>
+                    <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
+                    </cell>
+                    <cell title="邮箱:" value-align="left" value="123@163.com">
+                    </cell>
+                    <cell title="登录名:" value-align="left" value="husanfeng">
+                    </cell>
+                    <cell title="登录密码:" value="123456" value-align="left">
+                    </cell>
+                </group>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -275,6 +153,11 @@ export default {
     };
   },
   methods: {
+    onItemClickImg() {
+      this.$router.push({
+        name: "feedback-page"
+      });
+    },
     feedbackClick() {
       this.$router.push({
         name: "feedback-page"

@@ -21,7 +21,7 @@
             </transition>
             <transition>
                 <grid :cols="3">
-                    <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
+                    <grid-item :label="item.title" v-for="item in functionList">
                         <img slot="icon" :src="item.icon">
                     </grid-item>
                 </grid>

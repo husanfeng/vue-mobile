@@ -105,7 +105,7 @@
                     <tabbar-item @on-item-click="onItemClickProcess">
                         <img slot="icon" src="../static/order_normal.png">
                         <img slot="icon-active" src="../static/order_pressed.png">
-                        <span slot="label">流程</span>
+                        <span slot="label">发现</span>
                     </tabbar-item>
                     <tabbar-item @on-item-click="onItemClickMy">
                         <img slot="icon" src="../static/my_normal.png">

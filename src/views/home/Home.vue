@@ -1,61 +1,179 @@
 <template>
-    <div style="height:100%;">
-        <div v-if="isShowFunction" @click="clickFunctionPage">
-            <transition>
-                <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="image">
-                        <img :src="image" width="100%" style="overflow:hidden" />
-                    </van-swipe-item>
-                </van-swipe>
-            </transition>
-            <transition>
-                <div class="next">
-                    <van-icon name="arrow-left" class="setarrow" @click="setDrawerVisibility" />
-                </div>
-            </transition>
-            <transition>
-                <van-notice-bar mode="closeable">
-                    华润医药商业-财务报账系统将于2019年3月份正式上线...
-                </van-notice-bar>
+    <div id="app" style="height:100%;">
+        <div>
+            <loading v-model="isLoading"></loading>
+        </div>
+        <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
+            <!-- drawer content -->
+            <div slot="drawer">
+                <flexbox @click="">
+                    <flexbox-item>
+                        <div class="flex-logo">
+                            <img src="../static/hsf.jpg" />
+                        </div>
+                    </flexbox-item>
+                </flexbox>
+                <flexbox @click.native="feedbackClick">
+                    <flexbox-item>
+                        <div class="flex-function-img">
+                            <img src="../static/u234.png" />
+                        </div>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <div class="flex-function-label">
+                            意见反馈
+                        </div>
+                    </flexbox-item>
+                </flexbox>
 
-            </transition>
-            <transition>
-                <grid :cols="3">
-                    <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
-                        <img slot="icon" :src="item.icon">
-                    </grid-item>
-                </grid>
-            </transition>
-        </div>
-        <div v-if="isShowProcess" class="process-module" style="text-align:center;marginTop:80%">
-            <p style="text-align:center">
-                暂无流程查询
-            </p>
-        </div>
-        <div v-if="isShowMy" class="my-module">
-            <div class="my-module-border">
-                <div class="my-module-img">
-                    <img src="../../../static/hsf.jpg" alt="">
-                    <div class="my-module-text">
-                        <p>husanfeng</p>
-                        <p>男 26</p>
-                        <p>财务报账项目组前端开发</p>
+                <flexbox>
+                    <flexbox-item>
+                        <div class="flex-function-img">
+                            <img src="../static/u236.png" />
+                        </div>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <div class="flex-function-label">
+                            帮助中心
+                        </div>
+                    </flexbox-item>
+                </flexbox>
+
+                <flexbox>
+                    <flexbox-item>
+                        <div class="flex-function-img">
+                            <img src="../static/u238.png" />
+                        </div>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <div class="flex-function-label">
+                            设置
+                        </div>
+                    </flexbox-item>
+                </flexbox>
+
+                <flexbox>
+                    <flexbox-item>
+                        <div class="flex-function-img">
+                            <img src="../static/u240.png" />
+                        </div>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <div class="flex-function-label">
+                            注销登陆
+                        </div>
+                    </flexbox-item>
+                </flexbox>
+
+                <flexbox>
+                    <flexbox-item>
+                        <div class="flex-function-img">
+                            <img src="../static/u242.png" />
+                        </div>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <div class="flex-function-label">
+                            关于
+                        </div>
+                    </flexbox-item>
+                </flexbox>
+                <!-- <group title="" style="margin-top:20px;">
+                    <cell title="Demo" link="/" value="" @click.native="drawerVisibility = false">
+                    </cell> -->
+                <!-- <cell title="Buy me a coffee" link="project/donate" @click.native="drawerVisibility = false">
+                    </cell>
+                    <cell title="Github" link="http://github.com/airyland/vux" value="Star me" @click.native="drawerVisibility = false">
+                    </cell> -->
+                <!-- </group> -->
+                <!-- <group title="showMode">
+                    <radio v-model="showMode" :options="['push', 'overlay']" @on-change="onShowModeChange"></radio>
+                </group>
+                <group title="placement">
+                    <radio v-model="showPlacement" :options="['left', 'right']" @on-change="onPlacementChange"></radio>
+                </group> -->
+            </div>
+            <!-- main content -->
+            <view-box ref="viewBox" body-padding-bottom="55px">
+
+                <div v-show="isShowFunction">
+                    <transition>
+                        <van-swipe :autoplay="3000">
+                            <van-swipe-item v-for="(image, index) in images" :key="index">
+                                <img :src="image" width="100%" style="overflow:hidden" />
+                            </van-swipe-item>
+                        </van-swipe>
+                    </transition>
+                    <transition>
+                        <div class="next">
+                            <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                        </div>
+                    </transition>
+                    <transition>
+                        <van-notice-bar mode="closeable">
+                            华润医药商业-财务报账系统将于2019年3月份正式上线...
+                        </van-notice-bar>
+
+                    </transition>
+                    <transition>
+                        <grid :cols="3">
+                            <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
+                                <img slot="icon" :src="item.icon">
+                            </grid-item>
+                        </grid>
+                    </transition>
+                </div>
+                <div v-show="isShowProcess" class="process-module" style="text-align:center">
+                    <p style="text-align:center">
+                        暂无流程查询
+                    </p>
+                </div>
+                <div v-show="isShowMy" class="my-module">
+                    <div class="my-module-border">
+                        <div class="my-module-img">
+                            <img src="../static/hsf.jpg" alt="">
+                            <div class="my-module-text">
+                                <p>husanfeng</p>
+                                <p>男 26</p>
+                                <p>财务报账项目组前端开发</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <group>
+                            <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
+                            </cell>
+                            <cell title="邮箱:" value-align="left" value="123@163.com">
+                            </cell>
+                            <cell title="登录名:" value-align="left" value="husanfeng">
+                            </cell>
+                            <cell title="登录密码:" value="123456" value-align="left">
+                            </cell>
+                        </group>
                     </div>
                 </div>
-            </div>
-            <div>
-                <group>
-                    <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
-                    </cell>
-                    <cell title="邮箱:" value-align="left" value="123@163.com">
-                    </cell>
-                    <cell title="登录名:" value-align="left" value="husanfeng">
-                    </cell>
-                    <cell title="登录密码:" value="123456" value-align="left">
-                    </cell>
-                </group>
-            </div>
-        </div>
+                <div v-show="isShowRouterView">
+                    <router-view></router-view>
+                </div>
+                <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" v-show="isShowBar">
+                    <tabbar-item selected @on-item-click="onItemClickFunction">
+                        <img slot="icon" src="../static/function_normal.png">
+                        <img slot="icon-active" src="../static/function_pressed.png">
+                        <span slot="label">首页</span>
+                    </tabbar-item>
+                    <tabbar-item @on-item-click="onItemClickProcess">
+                        <img slot="icon" src="../static/order_normal.png">
+                        <img slot="icon-active" src="../static/order_pressed.png">
+                        <span slot="label">流程</span>
+                    </tabbar-item>
+                    <tabbar-item @on-item-click="onItemClickMy">
+                        <img slot="icon" src="../static/my_normal.png">
+                        <img slot="icon-active" src="../static/my_pressed.png">
+                        <span slot="label">我的</span>
+                    </tabbar-item>
+                </tabbar>
+
+            </view-box>
+        </drawer>
     </div>
 </template>
 
@@ -91,7 +209,7 @@ import {
   List
 } from "vant";
 import { debug } from "util";
-import { mapState, mapGetters, mapMutations } from "vuex";
+// import { mapState, mapActions } from "vuex";
 export default {
   directives: {},
   components: {
@@ -126,9 +244,11 @@ export default {
   data() {
     return {
       title: "财务报账系统",
-      //   isShowFunction: true,
-      //   isShowProcess: false,
-      //   isShowMy: false,
+      isShowBar: true,
+      isShowFunction: true,
+      isShowProcess: false,
+      isShowMy: false,
+      isShowRouterView: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -153,21 +273,13 @@ export default {
     };
   },
   methods: {
-    clickFunctionPage() {
-      //   debugger;
-      //   if (this.isDrawerVisibility) {
-      //     this.setIsDrawerVisibility();
-      //   }
-    },
-    setDrawerVisibility() {
-      this.setIsDrawerVisibility();
-    },
     onItemClickImg() {
       this.$router.push({
         name: "feedback-page"
       });
     },
     feedbackClick() {
+      this.drawerVisibility = false;
       this.$router.push({
         name: "feedback-page"
       });
@@ -207,8 +319,8 @@ export default {
     changeLocale(locale) {
       this.$i18n.set(locale);
       this.$locale.set(locale);
-    },
-    ...mapMutations(["setIsDrawerVisibility"])
+    }
+    // ...mapActions(["updateDemoPosition"])
   },
   mounted() {
     // this.handler = () => {
@@ -222,65 +334,35 @@ export default {
     this.box && this.box.removeEventListener("scroll", this.handler, false);
   },
   created() {
-    // this.isShowFunction = this.$store.state.isShowFunction;
-    // this.isShowProcess = this.$store.state.isShowProcess;
-    // this.isShowMy = this.$store.state.isShowMy;
     this.functionList = [
       {
         title: "我的申请",
-        icon: "../../../static/icon_ehr_tool_blood_pressure.png"
+        icon: "../static/icon_ehr_tool_blood_pressure.png"
       },
       {
         title: "待审批",
-        icon: "../../../static/icon_ehr_tool_body_temerature.png"
+        icon: "../static/icon_ehr_tool_body_temerature.png"
       },
       {
         title: "已审批",
-        icon: "../../../static/icon_ehr_tool_diet.png"
+        icon: "../static/icon_ehr_tool_diet.png"
       },
       {
         title: "已提交",
-        icon: "../../../static/icon_ehr_tool_glucose.png"
+        icon: "../static/icon_ehr_tool_glucose.png"
       },
       {
         title: "草稿单",
-        icon: "../../../static/icon_ehr_tool_heart_rate.png"
+        icon: "../static/icon_ehr_tool_heart_rate.png"
       },
       {
         title: "作废单",
-        icon: "../../../static/icon_ehr_tool_sport.png"
+        icon: "../static/icon_ehr_tool_sport.png"
       }
     ];
   },
-  watch: {
-    // path(path) {
-    //   if (path === "/component/demo") {
-    //     this.$router.replace("/demo");
-    //     return;
-    //   }
-    //   if (path === "/demo") {
-    //     setTimeout(() => {
-    //       this.box = document.querySelector("#demo_list_box");
-    //       if (this.box) {
-    //         this.box.removeEventListener("scroll", this.handler, false);
-    //         this.box.addEventListener("scroll", this.handler, false);
-    //       }
-    //     }, 1000);
-    //   } else {
-    //     this.box && this.box.removeEventListener("scroll", this.handler, false);
-    //   }
-    // }
-  },
+
   computed: {
-    // this.isShowFunction = this.$store.state.isShowFunction;
-    // this.isShowProcess = this.$store.state.isShowProcess;
-    // this.isShowMy = this.$store.state.isShowMy;
-    ...mapState({
-      isShowFunction: state => state.home.isShowFunction,
-      isShowProcess: state => state.home.isShowProcess,
-      isShowMy: state => state.home.isShowMy,
-      isDrawerVisibility: state => state.home.isDrawerVisibility
-    }),
     // ...mapState({
     //   route: state => state.route,
     //   path: state => state.route.path,
@@ -290,12 +372,12 @@ export default {
     //   direction: state => state.vux.direction
     // }),
 
-    isShowBar() {
-      if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
-        return false;
-      }
-      return true;
-    },
+    // isShowBar() {
+    //   if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     isShowNav() {
       if (this.entryUrl.indexOf("hide-nav") > -1) {
         return false;
@@ -332,6 +414,23 @@ export default {
     //   //   return this.componentName ? `Demo/${this.componentName}` : "Demo/~~";
     // },
     viewTransition() {}
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path != "/") {
+        this.isShowBar = false;
+        this.isShowFunction = false;
+        this.isShowProcess = false;
+        this.isShowMy = false;
+        this.isShowRouterView = true;
+      } else {
+        this.isShowBar = true;
+        this.isShowFunction = true;
+        this.isShowProcess = false;
+        this.isShowMy = false;
+        this.isShowRouterView = false;
+      }
+    }
   }
 };
 </script>

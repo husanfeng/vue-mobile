@@ -88,29 +88,10 @@
                     </flexbox-item>
                 </flexbox>
 
-                <!-- <group title="" style="margin-top:20px;">
-                    <cell title="Demo" link="/" value="" @click.native="drawerVisibility = false">
-                    </cell> -->
-                <!-- <cell title="Buy me a coffee" link="project/donate" @click.native="drawerVisibility = false">
-                    </cell>
-                    <cell title="Github" link="http://github.com/airyland/vux" value="Star me" @click.native="drawerVisibility = false">
-                    </cell> -->
-                <!-- </group> -->
-                <!-- <group title="showMode">
-                    <radio v-model="showMode" :options="['push', 'overlay']" @on-change="onShowModeChange"></radio>
-                </group>
-                <group title="placement">
-                    <radio v-model="showPlacement" :options="['left', 'right']" @on-change="onPlacementChange"></radio>
-                </group> -->
             </div>
             <!-- main content -->
             <view-box ref="viewBox" body-padding-bottom="55px">
-                <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
-                    <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
-                        <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-                    </span>
-                </x-header> -->
-                <!-- remember to import BusPlugin in main.js if you use components: x-img and sticky -->
+
                 <transition>
                     <router-view class="router-view"></router-view>
                 </transition>

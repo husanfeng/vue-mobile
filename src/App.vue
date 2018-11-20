@@ -19,7 +19,7 @@
                 <flexbox @click="">
                     <flexbox-item>
                         <div class="flex-logo">
-                            <img src="../static/hsf.jpg" />
+                            <img :src="logoImgUrl" />
                         </div>
                     </flexbox-item>
                 </flexbox>
@@ -186,6 +186,7 @@ export default {
   data() {
     return {
       title: "财务报账系统",
+      logoImgUrl: "../static/hsf.jpg",
       path: this.$router,
       isShowBar: true,
       isShowFunction: true,

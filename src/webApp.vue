@@ -3,12 +3,6 @@
         <div>
             <loading v-model="isLoading"></loading>
         </div>
-        <div>
-            <actionsheet :menus="menus" v-model="showMenu" @on-click-menu="changeLocale"></actionsheet>
-        </div>
-        <div>
-            <router-view></router-view>
-        </div>
         <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
             <!-- drawer content -->
             <div slot="drawer">
@@ -100,13 +94,8 @@
             </div>
             <!-- main content -->
             <view-box ref="viewBox" body-padding-bottom="55px">
-                <!-- <x-header v-if="isShowNav" slot="header" style="background-color:rgb(255, 163, 41); width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
-                    <span slot="overwrite-left" @click="drawerVisibility = !drawerVisibility">
-                        <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-                    </span>
-                </x-header> -->
-                <!-- remember to import BusPlugin in main.js if you use components: x-img and sticky -->
-                <div v-if="isShowFunction">
+
+                <div v-show="isShowFunction">
                     <transition>
                         <van-swipe :autoplay="3000">
                             <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -127,18 +116,18 @@
                     </transition>
                     <transition>
                         <grid :cols="3">
-                            <grid-item :label="item.title" v-for="item in functionList">
+                            <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
                                 <img slot="icon" :src="item.icon">
                             </grid-item>
                         </grid>
                     </transition>
                 </div>
-                <div class="process-module" style="text-align:center;marginTop:80%" v-if="isShowProcess">
+                <div v-show="isShowProcess" class="process-module" style="text-align:center">
                     <p style="text-align:center">
                         暂无流程查询
                     </p>
                 </div>
-                <div class="my-module" v-if="isShowMy">
+                <div v-show="isShowMy" class="my-module">
                     <div class="my-module-border">
                         <div class="my-module-img">
                             <img src="../static/hsf.jpg" alt="">
@@ -162,8 +151,10 @@
                         </group>
                     </div>
                 </div>
-
-                <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+                <div v-show="isShowRouterView">
+                    <router-view></router-view>
+                </div>
+                <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" v-show="isShowBar">
                     <tabbar-item selected @on-item-click="onItemClickFunction">
                         <img slot="icon" src="../static/function_normal.png">
                         <img slot="icon-active" src="../static/function_pressed.png">
@@ -253,9 +244,11 @@ export default {
   data() {
     return {
       title: "财务报账系统",
+      isShowBar: true,
       isShowFunction: true,
       isShowProcess: false,
       isShowMy: false,
+      isShowRouterView: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -280,7 +273,13 @@ export default {
     };
   },
   methods: {
+    onItemClickImg() {
+      this.$router.push({
+        name: "feedback-page"
+      });
+    },
     feedbackClick() {
+      this.drawerVisibility = false;
       this.$router.push({
         name: "feedback-page"
       });
@@ -362,25 +361,7 @@ export default {
       }
     ];
   },
-  watch: {
-    // path(path) {
-    //   if (path === "/component/demo") {
-    //     this.$router.replace("/demo");
-    //     return;
-    //   }
-    //   if (path === "/demo") {
-    //     setTimeout(() => {
-    //       this.box = document.querySelector("#demo_list_box");
-    //       if (this.box) {
-    //         this.box.removeEventListener("scroll", this.handler, false);
-    //         this.box.addEventListener("scroll", this.handler, false);
-    //       }
-    //     }, 1000);
-    //   } else {
-    //     this.box && this.box.removeEventListener("scroll", this.handler, false);
-    //   }
-    // }
-  },
+
   computed: {
     // ...mapState({
     //   route: state => state.route,
@@ -391,12 +372,12 @@ export default {
     //   direction: state => state.vux.direction
     // }),
 
-    isShowBar() {
-      if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
-        return false;
-      }
-      return true;
-    },
+    // isShowBar() {
+    //   if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     isShowNav() {
       if (this.entryUrl.indexOf("hide-nav") > -1) {
         return false;
@@ -433,6 +414,23 @@ export default {
     //   //   return this.componentName ? `Demo/${this.componentName}` : "Demo/~~";
     // },
     viewTransition() {}
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path != "/") {
+        this.isShowBar = false;
+        this.isShowFunction = false;
+        this.isShowProcess = false;
+        this.isShowMy = false;
+        this.isShowRouterView = true;
+      } else {
+        this.isShowBar = true;
+        this.isShowFunction = true;
+        this.isShowProcess = false;
+        this.isShowMy = false;
+        this.isShowRouterView = false;
+      }
+    }
   }
 };
 </script>

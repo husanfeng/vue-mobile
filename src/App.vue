@@ -7,9 +7,15 @@
             <actionsheet :menus="menus" v-model="showMenu" @on-click-menu="changeLocale"></actionsheet>
         </div>
 
-        <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
+        <drawer width="250px;" :show="isDrawerVisibility" @on-hide="onHideDrawer" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}">
             <!-- drawer content -->
             <div slot="drawer">
+
+                <flexbox @click="">
+                    <div class="next-app">
+                        <van-icon name="arrow" class="setarrow-app" @click="setDrawerVisibility" />
+                    </div>
+                </flexbox>
                 <flexbox @click="">
                     <flexbox-item>
                         <div class="flex-logo">
@@ -81,6 +87,7 @@
                         </div>
                     </flexbox-item>
                 </flexbox>
+
                 <!-- <group title="" style="margin-top:20px;">
                     <cell title="Demo" link="/" value="" @click.native="drawerVisibility = false">
                     </cell> -->
@@ -163,7 +170,7 @@ import {
   List
 } from "vant";
 import { debug } from "util";
-// import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   directives: {},
   components: {
@@ -219,33 +226,57 @@ export default {
         "zh-CN": "管理员",
         en: "部门领导"
       },
-      drawerVisibility: false,
+      drawerVisibility: true,
       showMode: "push",
-      showModeValue: "push",
+      showModeValue: "overlay",
       showPlacement: "left",
       showPlacementValue: "left"
     };
   },
   methods: {
+    ...mapMutations([
+      "setIsShowFunction",
+      "setIsShowProcess",
+      "setIsShowMy",
+      "setIsDrawerVisibility"
+    ]),
+    setDrawerVisibility() {
+      this.setIsDrawerVisibility();
+    },
+    // ...mapActions(["setIsDrawerVisibility"]),
+    onHideDrawer() {
+      //   debugger;
+      //   this.setIsDrawerVisibility();
+    },
+    // clickFunctionPage() {
+    //   debugger;
+    //   if (this.isDrawerVisibility) {
+    //     this.setIsDrawerVisibility();
+    //   }
+    // },
     feedbackClick() {
       this.$router.push({
         name: "feedback-page"
       });
+      this.setIsDrawerVisibility();
     },
     onItemClickFunction() {
-      this.isShowFunction = true;
-      this.isShowProcess = false;
-      this.isShowMy = false;
+      this.setIsShowFunction();
+      //   this.isShowFunction = true;
+      //   this.isShowProcess = false;
+      //   this.isShowMy = false;
     },
     onItemClickProcess() {
-      this.isShowFunction = false;
-      this.isShowProcess = true;
-      this.isShowMy = false;
+      this.setIsShowProcess();
+      //   this.isShowFunction = false;
+      //   this.isShowProcess = true;
+      //   this.isShowMy = false;
     },
     onItemClickMy() {
-      this.isShowFunction = false;
-      this.isShowProcess = false;
-      this.isShowMy = true;
+      this.setIsShowMy();
+      //   this.isShowFunction = false;
+      //   this.isShowProcess = false;
+      //   this.isShowMy = true;
     },
     onShowModeChange(val) {
       /** hide drawer before changing showMode **/
@@ -268,7 +299,6 @@ export default {
       this.$i18n.set(locale);
       this.$locale.set(locale);
     }
-    // ...mapActions(["updateDemoPosition"])
   },
   mounted() {
     // this.handler = () => {
@@ -310,25 +340,19 @@ export default {
     ];
   },
   watch: {
-    // path(path) {
-    //   if (path === "/component/demo") {
-    //     this.$router.replace("/demo");
-    //     return;
-    //   }
-    //   if (path === "/demo") {
-    //     setTimeout(() => {
-    //       this.box = document.querySelector("#demo_list_box");
-    //       if (this.box) {
-    //         this.box.removeEventListener("scroll", this.handler, false);
-    //         this.box.addEventListener("scroll", this.handler, false);
-    //       }
-    //     }, 1000);
-    //   } else {
-    //     this.box && this.box.removeEventListener("scroll", this.handler, false);
-    //   }
-    // }
+    $route(to, from) {
+      if (to.path != "/") {
+        this.isShowBar = false;
+      } else {
+        this.isShowBar = true;
+      }
+    }
   },
   computed: {
+    ...mapState({
+      isDrawerVisibility: state => state.home.isDrawerVisibility,
+      router: state => state.router
+    }),
     // ...mapState({
     //   route: state => state.route,
     //   path: state => state.route.path,
@@ -338,12 +362,12 @@ export default {
     //   direction: state => state.vux.direction
     // }),
 
-    isShowBar() {
-      if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
-        return false;
-      }
-      return true;
-    },
+    // isShowBar() {
+    //   if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     isShowNav() {
       if (this.entryUrl.indexOf("hide-nav") > -1) {
         return false;
@@ -549,6 +573,7 @@ body {
 .position-bottom {
   position: fixed;
   top: 60px;
+  right: 20px;
   //left: 1%;
 }
 @-webkit-keyframes myfirst {
@@ -593,21 +618,7 @@ body {
     transform: translateX(15px);
   }
 }
-.next {
-  // .position-bottom;
-  .setarrow {
-    // position:relative;
-    .position-bottom;
-    font-size: 40px !important;
-    color: rgba(243, 244, 247, 0.8);
-    opacity: 0.8;
-    cursor: pointer;
-    animation: myfirst 5s infinite;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-}
+
 .van-swipe {
   overflow: hidden;
   position: relative;
@@ -662,5 +673,20 @@ body {
   -webkit-box-align: center !important;
   -webkit-align-items: center !important;
   align-items: center !important;
+}
+.next-app {
+  // .position-bottom;
+  .setarrow-app {
+    // position:relative;
+    .position-bottom;
+    font-size: 40px !important;
+    color: rgba(126, 151, 226, 0.8);
+    opacity: 0.8;
+    cursor: pointer;
+    animation: myfirst 5s infinite;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
 }
 </style>

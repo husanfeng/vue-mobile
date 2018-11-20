@@ -1,16 +1,16 @@
 <template>
     <div style="height:100%;">
-        <div v-if="isShowFunction">
+        <div v-if="isShowFunction" @click="clickFunctionPage">
             <transition>
                 <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
+                    <van-swipe-item v-for="(image, index) in images" :key="image">
                         <img :src="image" width="100%" style="overflow:hidden" />
                     </van-swipe-item>
                 </van-swipe>
             </transition>
             <transition>
                 <div class="next">
-                    <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
+                    <van-icon name="arrow-left" class="setarrow" @click="setDrawerVisibility" />
                 </div>
             </transition>
             <transition>
@@ -91,7 +91,7 @@ import {
   List
 } from "vant";
 import { debug } from "util";
-// import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 export default {
   directives: {},
   components: {
@@ -126,9 +126,9 @@ export default {
   data() {
     return {
       title: "财务报账系统",
-      isShowFunction: true,
-      isShowProcess: false,
-      isShowMy: false,
+      //   isShowFunction: true,
+      //   isShowProcess: false,
+      //   isShowMy: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -153,6 +153,15 @@ export default {
     };
   },
   methods: {
+    clickFunctionPage() {
+      //   debugger;
+      //   if (this.isDrawerVisibility) {
+      //     this.setIsDrawerVisibility();
+      //   }
+    },
+    setDrawerVisibility() {
+      this.setIsDrawerVisibility();
+    },
     onItemClickImg() {
       this.$router.push({
         name: "feedback-page"
@@ -198,8 +207,8 @@ export default {
     changeLocale(locale) {
       this.$i18n.set(locale);
       this.$locale.set(locale);
-    }
-    // ...mapActions(["updateDemoPosition"])
+    },
+    ...mapMutations(["setIsDrawerVisibility"])
   },
   mounted() {
     // this.handler = () => {
@@ -213,6 +222,9 @@ export default {
     this.box && this.box.removeEventListener("scroll", this.handler, false);
   },
   created() {
+    // this.isShowFunction = this.$store.state.isShowFunction;
+    // this.isShowProcess = this.$store.state.isShowProcess;
+    // this.isShowMy = this.$store.state.isShowMy;
     this.functionList = [
       {
         title: "我的申请",
@@ -260,6 +272,15 @@ export default {
     // }
   },
   computed: {
+    // this.isShowFunction = this.$store.state.isShowFunction;
+    // this.isShowProcess = this.$store.state.isShowProcess;
+    // this.isShowMy = this.$store.state.isShowMy;
+    ...mapState({
+      isShowFunction: state => state.home.isShowFunction,
+      isShowProcess: state => state.home.isShowProcess,
+      isShowMy: state => state.home.isShowMy,
+      isDrawerVisibility: state => state.home.isDrawerVisibility
+    }),
     // ...mapState({
     //   route: state => state.route,
     //   path: state => state.route.path,

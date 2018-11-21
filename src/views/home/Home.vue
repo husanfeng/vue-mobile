@@ -85,7 +85,7 @@
             <transition>
                 <van-swipe :autoplay="3000">
                     <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img :src="image" width="100%" style="overflow:hidden" />
+                        <img :src="image" width="100%" height="60px" style="overflow:hidden" />
                     </van-swipe-item>
                 </van-swipe>
             </transition>

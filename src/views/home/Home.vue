@@ -103,7 +103,7 @@
             <transition>
                 <grid :cols="3">
                     <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
-                        <img slot="icon" height="60px" width="60px" :src="item.icon">
+                        <img slot="icon" height="60px" width="60px" src="../../../static/icon_ehr_tool_blood_pressure.png">
                     </grid-item>
                 </grid>
             </transition>

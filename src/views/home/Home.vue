@@ -85,7 +85,7 @@
             <transition>
                 <van-swipe :autoplay="3000">
                     <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img :src="image" width="100%" height="60px" style="overflow:hidden" />
+                        <img :src="image" width="100%" style="overflow:hidden" />
                     </van-swipe-item>
                 </van-swipe>
             </transition>
@@ -103,7 +103,7 @@
             <transition>
                 <grid :cols="3">
                     <grid-item :label="item.title" v-for="item in functionList" @click.native="onItemClickImg">
-                        <img slot="icon" :src="item.icon">
+                        <img slot="icon" height="60px" width="60px" :src="item.icon">
                     </grid-item>
                 </grid>
             </transition>

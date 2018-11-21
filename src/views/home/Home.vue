@@ -103,7 +103,7 @@
             <transition>
                 <grid :cols="3">
                     <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
-                        <img slot="icon" height="60px" width="60px" src="../../../static/icon_ehr_tool_blood_pressure.png">
+                        <img slot="icon" height="60px" width="60px" :src="item.icon">
                     </grid-item>
                 </grid>
             </transition>
@@ -337,27 +337,27 @@ export default {
     this.functionList = [
       {
         title: "我的申请",
-        icon: "../../../static/icon_ehr_tool_blood_pressure.png"
+        icon: "/static/icon_ehr_tool_blood_pressure.png"
       },
       {
         title: "待审批",
-        icon: "../../../static/icon_ehr_tool_body_temerature.png"
+        icon: "/static/icon_ehr_tool_body_temerature.png"
       },
       {
         title: "已审批",
-        icon: "../../../static/icon_ehr_tool_diet.png"
+        icon: "/static/icon_ehr_tool_diet.png"
       },
       {
         title: "已提交",
-        icon: "../../../static/icon_ehr_tool_glucose.png"
+        icon: "/static/icon_ehr_tool_glucose.png"
       },
       {
         title: "草稿单",
-        icon: "../../../static/icon_ehr_tool_heart_rate.png"
+        icon: "/static/icon_ehr_tool_heart_rate.png"
       },
       {
         title: "作废单",
-        icon: "../../../static/icon_ehr_tool_sport.png"
+        icon: "/static/icon_ehr_tool_sport.png"
       }
     ];
   },

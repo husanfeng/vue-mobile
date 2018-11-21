@@ -135,6 +135,7 @@
                     <cell title="登录密码:" value="123456" value-align="left">
                     </cell>
                 </group>
+                <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
             </div>
         </div>
         <!-- <div v-show="isShowRouterView">
@@ -183,6 +184,7 @@ import {
   Loading,
   Grid,
   GridItem,
+  XButton,
   Flexbox,
   FlexboxItem
 } from "vux";
@@ -228,7 +230,8 @@ export default {
     Grid,
     GridItem,
     Flexbox,
-    FlexboxItem
+    FlexboxItem,
+    XButton
   },
   data() {
     return {
@@ -263,6 +266,13 @@ export default {
     };
   },
   methods: {
+    loginOut() {
+      sessionStorage.setItem("userName", "");
+      sessionStorage.setItem("userToken", ""); // 生产一段随机数
+      this.$router.push({
+        name: "login_page"
+      });
+    },
     onItemClickImg() {
       this.$router.push({
         name: "feedback-page"

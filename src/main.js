@@ -20,10 +20,12 @@ const RouterConfig = {
 
 const router = new VueRouter(RouterConfig);
 router.beforeEach((to, from, next) => {
-    debugger
+    // debugger
     let isLogin = sessionStorage.getItem("userToken")
-    if (isLogin) {
+    if (isLogin && to.path != '/login-page') {
         next()
+    } else if (isLogin && to.path === '/login-page') {
+        next(false)
     } else {
         if (to.path === '/login-page') { //这就是跳出循环的关键
             next()

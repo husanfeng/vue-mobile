@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
 import VueRouter from 'vue-router'
-import webApp from "./webApp.vue";
 import { routers } from "./router/index.js";
 import store from './vuex/index.js';
 import { Field } from 'vant'; import { Button } from 'vant';

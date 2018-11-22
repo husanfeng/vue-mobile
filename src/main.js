@@ -34,25 +34,7 @@ router.beforeEach((to, from, next) => {
         }
     }
 
-    // let a = sessionStorage.getItem("userToken")
-    // if (sessionStorage.getItem("userToken")) { // token存在
-    //     debugger
-    //     next({
-    //         name: 'home-page'
-    //     })
-    // }
 
-    // else {
-    //     debugger
-    //     if (sessionStorage.getItem("userToken") && to.name === 'login-page') {
-    //         next();
-    //     } else {
-    //         next({
-    //             name: 'login-page'
-    //         })
-    //     }
-
-    // }
 })
 router.afterEach(route => {
 

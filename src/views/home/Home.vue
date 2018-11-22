@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div>
-                <group>
+                <!-- <group>
                     <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
                     </cell>
                     <cell title="邮箱:" value-align="left" value="123@163.com">
@@ -134,8 +134,31 @@
                     </cell>
                     <cell title="登录密码:" value="123456" value-align="left">
                     </cell>
-                </group>
-                <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
+                </group> -->
+                <div>
+                    <group>
+                        <cell title="个人详情" link="/feedback-page" is-link>
+                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
+                        </cell>
+                        <cell title="帮助中心" link="/feedback-page" is-link>
+                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u236.png">
+                        </cell>
+                        <cell title="设置" link="/feedback-page" is-link>
+                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u238.png">
+                        </cell>
+                        <cell title="关于" link="/feedback-page" is-link>
+                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u242.png">
+                        </cell>
+                        <cell title="意见反馈" link="/feedback-page" is-link>
+                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
+                        </cell>
+
+                    </group>
+                </div>
+
+                <div style="margin:8px 8px 55px 8px">
+                    <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
+                </div>
             </div>
         </div>
         <!-- <div v-show="isShowRouterView">
@@ -454,11 +477,7 @@ body {
   font-size: 22px;
   color: #888;
 }
-.weui-tabbar.vux-demo-tabbar {
-  /** backdrop-filter: blur(10px);
-  background-color: none;
-  background: rgba(247, 247, 250, 0.5);**/
-}
+
 .vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
   color: #f70968;
 }
@@ -675,14 +694,15 @@ body {
   height: 100%;
   background-color: #f2f2f2;
   .my-module-border {
-    background-color: #fff;
-    margin: 5px;
-    height: 150px;
-    border: 1px solid #948c8c;
-    border-radius: 25px;
+    background-color: rgb(105, 105, 155);
+
+    height: 220px;
+
     .my-module-img {
-      text-align: left;
-      margin: 25px 0px 0px 5px;
+      text-align: center;
+      position: relative;
+      top: 10px;
+
       img {
         height: 100px;
         width: 100px;
@@ -690,8 +710,7 @@ body {
         border-radius: 100px;
       }
       .my-module-text {
-        float: right;
-        margin: 5px 50px 0px 0px;
+        margin: 5px;
       }
     }
   }

@@ -4,7 +4,7 @@
             <van-cell-group>
                 <van-field v-model="username" clearable label="用户名" placeholder="请输入用户名" />
                 <van-field v-model="password" clearable type="password" label="密码" placeholder="请输入密码" style="marginTop:10px" />
-                <van-button type="primary" style="marginTop:10px" @click="loginIn">登录</van-button>
+                <van-button type="primary" :loading="isLoading" style="marginTop:10px" @click="loginIn">登录</van-button>
             </van-cell-group>
         </div>
     </div>
@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       title: "title",
+      isLoading: false,
       username: "",
       password: ""
     };
@@ -27,6 +28,7 @@ export default {
   methods: {
     loginIn() {
       if (this.username != "" || this.password != "") {
+        this.isLoading = true;
         sessionStorage.setItem("userName", this.username);
         sessionStorage.setItem("userToken", "iigslfdjzgertuq589e6uhgf"); // 生产一段随机数
         this.$store.commit("setUserName", this.username);
@@ -81,7 +83,7 @@ export default {
   padding: 0;
   display: inline-block;
   height: 44px;
-  width: 140px;
+  width: 160px;
   line-height: 42px;
   border-radius: 6px;
   box-sizing: border-box;

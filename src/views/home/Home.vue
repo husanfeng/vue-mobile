@@ -125,37 +125,23 @@
                 </div>
             </div>
             <div>
-                <!-- <group>
-                    <cell primary="content" value-align="left" title="手机号:" value="   13301220456">
+                <group>
+                    <cell title="个人详情" link="/feedback-page" is-link>
+                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
                     </cell>
-                    <cell title="邮箱:" value-align="left" value="123@163.com">
+                    <cell title="帮助中心" link="/feedback-page" is-link>
+                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u236.png">
                     </cell>
-                    <cell title="登录名:" value-align="left" value="husanfeng">
+                    <cell title="设置" link="/feedback-page" is-link>
+                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u238.png">
                     </cell>
-                    <cell title="登录密码:" value="123456" value-align="left">
+                    <cell title="关于" link="/feedback-page" is-link>
+                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u242.png">
                     </cell>
-                </group> -->
-                <div>
-                    <group>
-                        <cell title="个人详情" link="/feedback-page" is-link>
-                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
-                        </cell>
-                        <cell title="帮助中心" link="/feedback-page" is-link>
-                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u236.png">
-                        </cell>
-                        <cell title="设置" link="/feedback-page" is-link>
-                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u238.png">
-                        </cell>
-                        <cell title="关于" link="/feedback-page" is-link>
-                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u242.png">
-                        </cell>
-                        <cell title="意见反馈" link="/feedback-page" is-link>
-                            <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
-                        </cell>
-
-                    </group>
-                </div>
-
+                    <cell title="意见反馈" link="/feedback-page" is-link>
+                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
+                    </cell>
+                </group>
                 <div style="margin:8px 8px 55px 8px">
                     <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
                 </div>
@@ -719,7 +705,7 @@ body {
   /* margin-top: 1.17647059em; */
   background-color: #ffffff !important;
   /* line-height: 1.41176471; */
-  font-size: 20px !important;
+  //   font-size: 20px !important;
   overflow: hidden !important;
   position: relative !important;
 }

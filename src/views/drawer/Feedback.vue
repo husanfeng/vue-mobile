@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <x-header style="background-color:#000;">意见反馈</x-header> -->
+        <x-header style="background-color:#000;">跳转页面</x-header>
         <p>1233</p>
     </div>
 </template>

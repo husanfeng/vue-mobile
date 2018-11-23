@@ -3,165 +3,14 @@
         <div>
             <loading v-model="isLoading"></loading>
         </div>
-        <!-- <drawer width="250px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#f2f2f2', width: '250px'}"> -->
-        <!-- drawer content -->
-        <!-- <div slot="drawer">
-            <flexbox @click="">
-                <flexbox-item>
-                    <div class="flex-logo">
-                        <img src="../../../static/hsf.jpg" />
-                    </div>
-                </flexbox-item>
-            </flexbox>
-            <flexbox @click.native="feedbackClick">
-                <flexbox-item>
-                    <div class="flex-function-img">
-                        <img src="../../../static/u234.png" />
-                    </div>
-                </flexbox-item>
-                <flexbox-item>
-                    <div class="flex-function-label">
-                        意见反馈
-                    </div>
-                </flexbox-item>
-            </flexbox>
-
-            <flexbox>
-                <flexbox-item>
-                    <div class="flex-function-img">
-                        <img src="../../../static/u236.png" />
-                    </div>
-                </flexbox-item>
-                <flexbox-item>
-                    <div class="flex-function-label">
-                        帮助中心
-                    </div>
-                </flexbox-item>
-            </flexbox>
-
-            <flexbox>
-                <flexbox-item>
-                    <div class="flex-function-img">
-                        <img src="../../../static/u238.png" />
-                    </div>
-                </flexbox-item>
-                <flexbox-item>
-                    <div class="flex-function-label">
-                        设置
-                    </div>
-                </flexbox-item>
-            </flexbox>
-
-            <flexbox>
-                <flexbox-item>
-                    <div class="flex-function-img">
-                        <img src="../../../static/u240.png" />
-                    </div>
-                </flexbox-item>
-                <flexbox-item>
-                    <div class="flex-function-label">
-                        注销登陆
-                    </div>
-                </flexbox-item>
-            </flexbox>
-
-            <flexbox>
-                <flexbox-item>
-                    <div class="flex-function-img">
-                        <img src="../../../static/u242.png" />
-                    </div>
-                </flexbox-item>
-                <flexbox-item>
-                    <div class="flex-function-label">
-                        关于
-                    </div>
-                </flexbox-item>
-            </flexbox>
-        </div> -->
-        <!-- main content -->
-        <!-- <view-box ref="viewBox" body-padding-bottom="55px"> -->
-
         <div v-show="isShowFunction">
-            <transition>
-                <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img :src="image" width="100%" style="overflow:hidden" />
-                    </van-swipe-item>
-                </van-swipe>
-            </transition>
-            <!-- <transition>
-                <div class="next">
-                    <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
-                </div>
-            </transition> -->
-            <transition>
-                <van-notice-bar mode="closeable">
-                    华润医药商业-财务报账系统将于2019年3月份正式上线...
-                </van-notice-bar>
-
-            </transition>
-            <transition>
-                <grid :cols="3">
-                    <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
-                        <img slot="icon" height="60px" width="60px" :src="item.icon">
-                    </grid-item>
-                </grid>
-            </transition>
+            <Function></Function>
         </div>
-        <div v-show="isShowProcess" class="process-module" style="text-align:center">
-            <p style="text-align:center">
-                暂无流程查询
-            </p>
+        <div v-show="isShowProcess">
+            <Process></Process>
         </div>
-        <div v-show="isShowMy" class="my-module">
-            <div class="my-module-border">
-                <div class="my-module-img">
-                    <img src="../../../static/hsf.jpg" alt="">
-                    <div class="my-module-text">
-                        <p>husanfeng</p>
-                        <p>男 26</p>
-                        <p>财务报账项目组前端开发</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <mt-cell title="个人详情" to="/feedback-page" is-link>
-                    <img slot="icon" src="../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-                </mt-cell>
-                <mt-cell title="帮助中心" to="/feedback-page" is-link>
-                    <img slot="icon" src="../../../static/u236.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-                </mt-cell>
-                <mt-cell title="设置" to="/feedback-page" is-link>
-                    <img slot="icon" src="../../../static/u238.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-                </mt-cell>
-                <mt-cell title="关于" to="/feedback-page" is-link>
-                    <img slot="icon" src="../../../static/u242.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-                </mt-cell>
-                <mt-cell title="意见反馈" to="/feedback-page" is-link>
-                    <img slot="icon" src="../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-                </mt-cell>
-                <!-- <group>
-                    <cell title="个人详情" link="/feedback-page" is-link>
-                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
-                    </cell>
-                    <cell title="帮助中心" link="/feedback-page" is-link>
-                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u236.png">
-                    </cell>
-                    <cell title="设置" link="/feedback-page" is-link>
-                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u238.png">
-                    </cell>
-                    <cell title="关于" link="/feedback-page" is-link>
-                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u242.png">
-                    </cell>
-                    <cell title="意见反馈" link="/feedback-page" is-link>
-                        <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
-                    </cell>
-                </group> -->
-
-                <div style="margin:8px 8px 55px 8px">
-                    <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
-                </div>
-            </div>
+        <div v-show="isShowMy">
+            <My></My>
         </div>
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" v-show="isShowBar">
             <tabbar-item selected @on-item-click="onItemClickFunction">
@@ -180,9 +29,6 @@
                 <span slot="label">我的</span>
             </tabbar-item>
         </tabbar>
-
-        <!-- </view-box> -->
-        <!-- </drawer> -->
     </div>
 </template>
 
@@ -207,32 +53,14 @@ import {
   Flexbox,
   FlexboxItem
 } from "vux";
-import {
-  CellGroup,
-  Icon,
-  NavBar,
-  NoticeBar,
-  Swipe,
-  SwipeItem,
-  Row,
-  Col,
-  List
-} from "vant";
-import { debug } from "util";
+
+import Function from "./components/Function.vue";
+import My from "./components/My.vue";
+import Process from "./components/Process";
 // import { mapState, mapActions } from "vuex";
 export default {
   directives: {},
   components: {
-    [CellGroup.name]: CellGroup,
-    [Icon.name]: Icon,
-    [NavBar.name]: NavBar,
-    [NoticeBar.name]: NoticeBar,
-    [Swipe.name]: Swipe,
-    [SwipeItem.name]: SwipeItem,
-    [Row.name]: Row,
-    [Col.name]: Col,
-    [List.name]: List,
-
     Radio,
     Group,
     Cell,
@@ -250,7 +78,10 @@ export default {
     GridItem,
     Flexbox,
     FlexboxItem,
-    XButton
+    XButton,
+    Function,
+    Process,
+    My
   },
   data() {
     return {
@@ -454,7 +285,6 @@ export default {
   }
 };
 </script>
-
 <style lang="less">
 @import "~vux/src/styles/reset.less";
 @import "~vux/src/styles/1px.less";
@@ -468,247 +298,8 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
-// .demo-icon-22 {
-//   font-family: "vux-demo";
-//   font-size: 22px;
-//   color: #888;
-// }
-
-// .vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
-//   color: #f70968;
-// }
-// .vux-demo-tabbar
-//   .weui-tabbar_item.weui-bar__item_on
-//   .vux-demo-tabbar-icon-home {
-//   color: rgb(53, 73, 94);
-// }
-// .demo-icon-22:before {
-//   content: attr(icon);
-// }
-// .vux-demo-tabbar-component {
-//   background-color: #f70968;
-//   color: #fff;
-//   border-radius: 7px;
-//   padding: 0 4px;
-//   line-height: 14px;
-// }
-// .weui-tabbar__icon + .weui-tabbar__label {
-//   margin-top: 0 !important;
-// }
-// .vux-demo-header-box {
-//   z-index: 100;
-//   position: absolute;
-//   width: 100%;
-//   left: 0;
-//   top: 0;
-// }
-// @font-face {
-//   font-family: "vux-demo";
-//   src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot");
-//   src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot?#iefix")
-//       format("embedded-opentype"),
-//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.woff") format("woff"),
-//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.ttf") format("truetype"),
-//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.svg#iconfont")
-//       format("svg");
-// }
-// .demo-icon {
-//   font-family: "vux-demo";
-//   font-size: 20px;
-//   color: #04be02;
-// }
-// .demo-icon-big {
-//   font-size: 28px;
-// }
-// .demo-icon:before {
-//   content: attr(icon);
-// }
 .router-view {
   width: 100%;
   top: 46px;
-}
-// .vux-pop-out-enter-active,
-// .vux-pop-out-leave-active,
-// .vux-pop-in-enter-active,
-// .vux-pop-in-leave-active {
-//   will-change: transform;
-//   transition: all 500ms;
-//   height: 100%;
-//   top: 46px;
-//   position: absolute;
-//   backface-visibility: hidden;
-//   perspective: 1000;
-// }
-// .vux-pop-out-enter {
-//   opacity: 0;
-//   transform: translate3d(-100%, 0, 0);
-// }
-// .vux-pop-out-leave-active {
-//   opacity: 0;
-//   transform: translate3d(100%, 0, 0);
-// }
-// .vux-pop-in-enter {
-//   opacity: 0;
-//   transform: translate3d(100%, 0, 0);
-// }
-// .vux-pop-in-leave-active {
-//   opacity: 0;
-//   transform: translate3d(-100%, 0, 0);
-// }
-// .menu-title {
-//   color: #888;
-// }
-
-// .van-cell__title .van-icon {
-//   font-size: 18px;
-// }
-// .van-nav-bar {
-//   height: 46px;
-//   position: relative;
-//   -webkit-user-select: none;
-//   user-select: none;
-//   text-align: center;
-//   line-height: 46px;
-//   background-color: #dbdb70;
-// }
-.weui-grid {
-  position: relative !important;
-  float: left !important;
-  padding: 5px 10px !important;
-  width: 33.33333333% !important;
-  box-sizing: border-box !important;
-}
-.weui-grid__icon {
-  width: 60px !important;
-  height: 60px !important;
-  margin: 0 auto !important;
-}
-.weui-grid__icon img {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-  color: #1afa29 !important;
-}
-
-// .flex-logo {
-//   text-align: center;
-//   margin-top: 30px;
-//   img {
-//     height: 120px;
-//     width: 120px;
-//     border-radius: 120px;
-//   }
-// }
-
-// .flex-function-img {
-//   text-align: right;
-//   margin-top: 30px;
-//   img {
-//     height: 40px;
-//     width: 40px;
-//   }
-// }
-// .flex-function-label {
-//   margin-top: 30px;
-// }
-// .position-bottom {
-//   position: fixed;
-//   top: 60px;
-
-// }
-@-webkit-keyframes myfirst {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  40% {
-    -webkit-transform: translateX(30px);
-    transform: translateX(30px);
-  }
-  60% {
-    -webkit-transform: translateX(15px);
-    transform: translateX(15px);
-  }
-}
-@keyframes myfirst {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  40% {
-    -moz-transform: translateX(30px);
-    -ms-transform: translateX(30px);
-    -webkit-transform: translateX(30px);
-    transform: translateX(30px);
-  }
-  60% {
-    -moz-transform: translateX(15px);
-    -ms-transform: translateX(15px);
-    -webkit-transform: translateX(15px);
-    transform: translateX(15px);
-  }
-}
-// .next {
-//   // .position-bottom;
-//   .setarrow {
-//     // position:relative;
-//     .position-bottom;
-//     font-size: 40px !important;
-//     color: rgba(243, 244, 247, 0.8);
-//     opacity: 0.8;
-//     cursor: pointer;
-//     animation: myfirst 5s infinite;
-//     @media screen and (max-width: 768px) {
-//       font-size: 20px;
-//     }
-//   }
-// }
-.van-swipe {
-  overflow: hidden;
-  position: relative;
-  -webkit-user-select: none;
-  user-select: none;
-  line-height: 0px;
-}
-.process-module {
-  height: 100%;
-  background-color: #f2f2f2;
-}
-.my-module {
-  height: 100%;
-  background-color: #f2f2f2;
-  .my-module-border {
-    background-color: rgb(105, 105, 155);
-
-    height: 220px;
-
-    .my-module-img {
-      text-align: center;
-      position: relative;
-      top: 10px;
-
-      img {
-        height: 100px;
-        width: 100px;
-        border: 1px solid #948c8c;
-        border-radius: 100px;
-      }
-      .my-module-text {
-        margin: 5px;
-      }
-    }
-  }
 }
 </style>

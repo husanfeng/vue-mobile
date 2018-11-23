@@ -1,34 +1,26 @@
 <template>
     <div style="height:100%;">
-        <div v-show="isShowFunction">
-            <transition>
-                <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img :src="image" width="100%" style="overflow:hidden" />
-                    </van-swipe-item>
-                </van-swipe>
-            </transition>
-            <!-- <transition>
-                <div class="next">
-                    <van-icon name="arrow-left" class="setarrow" @click="drawerVisibility = !drawerVisibility" />
-                </div>
-            </transition> -->
-            <transition>
-                <van-notice-bar mode="closeable">
-                    华润医药商业-财务报账系统将于2019年3月份正式上线...
-                </van-notice-bar>
-            </transition>
-            <transition>
-                <grid :cols="3">
-                    <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
-                        <img slot="icon" height="60px" width="60px" :src="item.icon">
-                    </grid-item>
-                </grid>
-            </transition>
-        </div>
+        <transition>
+            <van-swipe :autoplay="3000">
+                <van-swipe-item v-for="(image, index) in images" :key="index">
+                    <img :src="image" width="100%" style="overflow:hidden" />
+                </van-swipe-item>
+            </van-swipe>
+        </transition>
+        <transition>
+            <van-notice-bar mode="closeable">
+                华润医药商业-财务报账系统将于2019年3月份正式上线...
+            </van-notice-bar>
+        </transition>
+        <transition>
+            <grid :cols="3">
+                <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
+                    <img slot="icon" height="60px" width="60px" :src="item.icon">
+                </grid-item>
+            </grid>
+        </transition>
     </div>
 </template>
-
 <script>
 import {
   Radio,
@@ -61,6 +53,7 @@ import {
   Col,
   List
 } from "vant";
+import { debug } from "util";
 // import { mapState, mapActions } from "vuex";
 export default {
   directives: {},
@@ -74,6 +67,7 @@ export default {
     [Row.name]: Row,
     [Col.name]: Col,
     [List.name]: List,
+
     Radio,
     Group,
     Cell,
@@ -126,59 +120,10 @@ export default {
     };
   },
   methods: {
-    loginOut() {
-      sessionStorage.setItem("userName", "");
-      sessionStorage.setItem("userToken", ""); // 生产一段随机数
-      this.$router.push({
-        name: "login_page"
-      });
-    },
     onItemClickImg() {
       this.$router.push({
         name: "feedback-page"
       });
-    },
-    feedbackClick() {
-      this.drawerVisibility = false;
-      this.$router.push({
-        name: "feedback-page"
-      });
-    },
-    onItemClickFunction() {
-      this.isShowFunction = true;
-      this.isShowProcess = false;
-      this.isShowMy = false;
-    },
-    onItemClickProcess() {
-      this.isShowFunction = false;
-      this.isShowProcess = true;
-      this.isShowMy = false;
-    },
-    onItemClickMy() {
-      this.isShowFunction = false;
-      this.isShowProcess = false;
-      this.isShowMy = true;
-    },
-    onShowModeChange(val) {
-      /** hide drawer before changing showMode **/
-      this.drawerVisibility = false;
-      setTimeout(one => {
-        this.showModeValue = val;
-      }, 400);
-    },
-    onPlacementChange(val) {
-      /** hide drawer before changing position **/
-      this.drawerVisibility = false;
-      setTimeout(one => {
-        this.showPlacementValue = val;
-      }, 400);
-    },
-    onClickMore() {
-      this.showMenu = true;
-    },
-    changeLocale(locale) {
-      this.$i18n.set(locale);
-      this.$locale.set(locale);
     }
     // ...mapActions(["updateDemoPosition"])
   },
@@ -190,9 +135,7 @@ export default {
     //   }
     // };
   },
-  beforeDestroy() {
-    this.box && this.box.removeEventListener("scroll", this.handler, false);
-  },
+  beforeDestroy() {},
   created() {
     this.functionList = [
       {
@@ -231,187 +174,23 @@ export default {
     //   isLoading: state => state.vux.isLoading,
     //   direction: state => state.vux.direction
     // }),
-
     // isShowBar() {
     //   if (this.entryUrl.indexOf("hide-tab-bar") > -1) {
     //     return false;
     //   }
     //   return true;
     // },
-    isShowNav() {
-      if (this.entryUrl.indexOf("hide-nav") > -1) {
-        return false;
-      }
-      return true;
-    },
-    leftOptions() {
-      return {
-        // showBack: this.route.path !== "/"
-      };
-    },
-    rightOptions() {
-      return {
-        showMore: true
-      };
-    },
-    headerTransition() {},
-    componentName() {
-      //   if (this.route.path) {
-      //     const parts = this.route.path.split("/");
-      //     if (/component/.test(this.route.path) && parts[2]) return parts[2];
-      //   }
-    },
-    isDemo() {
-      //   return /component|demo/.test(this.route.path);
-    },
-    isTabbarDemo() {
-      //   return /tabbar/.test(this.route.path);
-    },
-    // title() {
-    //   //   if (this.route.path === "/") return "Home";
-    //   //   if (this.route.path === "/project/donate") return "Donate";
-    //   //   if (this.route.path === "/demo") return "Demo list";
-    //   //   return this.componentName ? `Demo/${this.componentName}` : "Demo/~~";
-    // },
-    viewTransition() {}
   },
   watch: {
     $route(to, from) {
-      //   if (to.path != "/") {
-      //     this.isShowBar = false;
-      //     this.isShowFunction = false;
-      //     this.isShowProcess = false;
-      //     this.isShowMy = false;
-      //     this.isShowRouterView = true;
-      //   } else {
-      //     this.functionTitle = to.meta;
-      //     this.isShowBar = true;
-      //     this.isShowFunction = true;
-      //     this.isShowProcess = false;
-      //     this.isShowMy = false;
-      //     this.isShowRouterView = false;
-      //   }
+      if (to.path != "/") {
+      } else {
+      }
     }
   }
 };
 </script>
-
 <style lang="less">
-@import "~vux/src/styles/reset.less";
-@import "~vux/src/styles/1px.less";
-@import "~vux/src/styles/tap.less";
-body {
-  background-color: #f8f8f8;
-}
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-}
-.demo-icon-22 {
-  font-family: "vux-demo";
-  font-size: 22px;
-  color: #888;
-}
-
-.vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
-  color: #f70968;
-}
-.vux-demo-tabbar
-  .weui-tabbar_item.weui-bar__item_on
-  .vux-demo-tabbar-icon-home {
-  color: rgb(53, 73, 94);
-}
-.demo-icon-22:before {
-  content: attr(icon);
-}
-.vux-demo-tabbar-component {
-  background-color: #f70968;
-  color: #fff;
-  border-radius: 7px;
-  padding: 0 4px;
-  line-height: 14px;
-}
-.weui-tabbar__icon + .weui-tabbar__label {
-  margin-top: 0 !important;
-}
-.vux-demo-header-box {
-  z-index: 100;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-}
-@font-face {
-  font-family: "vux-demo"; /* project id 70323 */
-  src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot");
-  src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot?#iefix")
-      format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.woff") format("woff"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.svg#iconfont")
-      format("svg");
-}
-.demo-icon {
-  font-family: "vux-demo";
-  font-size: 20px;
-  color: #04be02;
-}
-.demo-icon-big {
-  font-size: 28px;
-}
-.demo-icon:before {
-  content: attr(icon);
-}
-.router-view {
-  width: 100%;
-  top: 46px;
-}
-.vux-pop-out-enter-active,
-.vux-pop-out-leave-active,
-.vux-pop-in-enter-active,
-.vux-pop-in-leave-active {
-  will-change: transform;
-  transition: all 500ms;
-  height: 100%;
-  top: 46px;
-  position: absolute;
-  backface-visibility: hidden;
-  perspective: 1000;
-}
-.vux-pop-out-enter {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-}
-.vux-pop-out-leave-active {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
-}
-.vux-pop-in-enter {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
-}
-.vux-pop-in-leave-active {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-}
-.menu-title {
-  color: #888;
-}
-
-.van-cell__title .van-icon {
-  font-size: 18px;
-}
-.van-nav-bar {
-  height: 46px;
-  position: relative;
-  -webkit-user-select: none;
-  user-select: none;
-  text-align: center;
-  line-height: 46px;
-  background-color: #dbdb70;
-}
 .weui-grid {
   position: relative !important;
   float: left !important;
@@ -431,33 +210,6 @@ body {
 }
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
   color: #1afa29 !important;
-}
-
-.flex-logo {
-  text-align: center;
-  margin-top: 30px;
-  img {
-    height: 120px;
-    width: 120px;
-    border-radius: 120px;
-  }
-}
-
-.flex-function-img {
-  text-align: right;
-  margin-top: 30px;
-  img {
-    height: 40px;
-    width: 40px;
-  }
-}
-.flex-function-label {
-  margin-top: 30px;
-}
-.position-bottom {
-  position: fixed;
-  top: 60px;
-  //left: 1%;
 }
 @-webkit-keyframes myfirst {
   0%,
@@ -501,55 +253,11 @@ body {
     transform: translateX(15px);
   }
 }
-.next {
-  // .position-bottom;
-  .setarrow {
-    // position:relative;
-    .position-bottom;
-    font-size: 40px !important;
-    color: rgba(243, 244, 247, 0.8);
-    opacity: 0.8;
-    cursor: pointer;
-    animation: myfirst 5s infinite;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-}
 .van-swipe {
   overflow: hidden;
   position: relative;
   -webkit-user-select: none;
   user-select: none;
   line-height: 0px;
-}
-.process-module {
-  height: 100%;
-  background-color: #f2f2f2;
-}
-.my-module {
-  height: 100%;
-  background-color: #f2f2f2;
-  .my-module-border {
-    background-color: rgb(105, 105, 155);
-
-    height: 220px;
-
-    .my-module-img {
-      text-align: center;
-      position: relative;
-      top: 10px;
-
-      img {
-        height: 100px;
-        width: 100px;
-        border: 1px solid #948c8c;
-        border-radius: 100px;
-      }
-      .my-module-text {
-        margin: 5px;
-      }
-    }
-  }
 }
 </style>

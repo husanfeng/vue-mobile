@@ -1,6 +1,7 @@
 <template>
     <div class="login">
         <div class="login-input">
+            <p class="login-text">欢迎登陆</p>
             <van-cell-group>
                 <van-field v-model="username" clearable label="用户名" placeholder="请输入用户名" />
                 <van-field v-model="password" clearable type="password" label="密码" placeholder="请输入密码" style="marginTop:10px" />
@@ -52,17 +53,35 @@ export default {
 };
 </script>
 <style lang="less">
-.login {
+body {
   height: 100%;
   width: 100%;
-  background-image: url("../../../static/login_mobile.png");
+  padding: 0;
+  margin: 0;
+  background-image: url(/static/img/login_mobile.de1879c.png);
   background-size: cover;
-  background-position: center;
-  position: absolute;
   overflow: hidden;
+  background-position: center;
+  //   background-repeat: no-repeat;
+}
+.login {
+  height: 667px;
+  width: 100%;
+  position: relative;
   .login-input {
-    margin: 60% 20px 0 20px;
-    // text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .login-text {
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 40px;
   }
 }
 
@@ -75,7 +94,7 @@ export default {
   padding: 0;
   display: inline-block;
   height: 44px;
-  width: 330px;
+  width: 100%;
   line-height: 42px;
   border-radius: 6px;
   box-sizing: border-box;

@@ -4,7 +4,7 @@
             <van-cell-group>
                 <van-field v-model="username" clearable label="用户名" placeholder="请输入用户名" />
                 <van-field v-model="password" clearable type="password" label="密码" placeholder="请输入密码" style="marginTop:10px" />
-                <van-button type="primary" :loading="isLoading" style="marginTop:10px" @click="loginIn">登录</van-button>
+                <van-button type="primary" :loading="isLoading" style="marginTop:30px" @click="loginIn">登录</van-button>
             </van-cell-group>
         </div>
     </div>
@@ -55,35 +55,27 @@ export default {
 .login {
   height: 100%;
   width: 100%;
-  /* min-width: 1366px;
-  min-height: 600px; */
   background-image: url("../../../static/login_mobile.png");
   background-size: cover;
   background-position: center;
   position: absolute;
   overflow: hidden;
   .login-input {
-    // height: 300px;
-    // background-image: url("../../../static/login-box-bg.png");
-    // background-repeat: no-repeat;
-    // background-position: center;
-    margin: 60% 10px 0 10px;
-    //  position: absolute;
-    text-align: center;
-    // border: 2px solid #948c8c;
+    margin: 60% 20px 0 20px;
+    // text-align: center;
   }
 }
 
 .van-button--primary {
-  color: #fff;
-  background-color: #ffa329;
+  color: #00ff;
+  background-color: #fff;
 }
 .van-button {
   position: relative;
   padding: 0;
   display: inline-block;
   height: 44px;
-  width: 160px;
+  width: 330px;
   line-height: 42px;
   border-radius: 6px;
   box-sizing: border-box;
@@ -95,6 +87,21 @@ export default {
 .van-button--normal {
   padding: 0 15px;
   font-size: 16px;
+}
+.van-cell {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  line-height: 24px;
+  position: relative;
+  background-color: #e7dfdf;
+  color: #333;
+  font-size: 14px;
+  overflow: hidden;
+  border-radius: 5px;
 }
 </style>
 

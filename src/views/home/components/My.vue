@@ -12,7 +12,7 @@
         </div>
         <div>
             <mt-cell title="个人详情" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                <img slot="icon" src="../../../../static/person.png" width="24" height="24" style="margin:0px 5px 0px 10px">
             </mt-cell>
             <mt-cell title="帮助中心" to="/feedback-page" is-link>
                 <img slot="icon" src="../../../../static/u236.png" width="24" height="24" style="margin:0px 5px 0px 10px">

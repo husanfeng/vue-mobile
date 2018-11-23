@@ -58,7 +58,7 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  background-image: url(/static/img/login_mobile.de1879c.png);
+  background-image: url(../../../static/login_mobile.png);
   background-size: cover;
   overflow: hidden;
   background-position: center;

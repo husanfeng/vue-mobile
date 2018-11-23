@@ -53,21 +53,15 @@ export default {
 };
 </script>
 <style lang="less">
-body {
-  height: 100%;
+.login {
+  height: 667px;
   width: 100%;
-  padding: 0;
-  margin: 0;
+  position: relative;
   background-image: url(../../../static/login_mobile.png);
   background-size: cover;
   overflow: hidden;
   background-position: center;
   //   background-repeat: no-repeat;
-}
-.login {
-  height: 667px;
-  width: 100%;
-  position: relative;
   .login-input {
     position: absolute;
     top: 40%;

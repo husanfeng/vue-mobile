@@ -26,6 +26,7 @@
             <mt-cell title="意见反馈" to="/feedback-page" is-link>
                 <img slot="icon" src="../../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
             </mt-cell>
+
             <div style="margin:8px 8px 55px 8px">
                 <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
             </div>

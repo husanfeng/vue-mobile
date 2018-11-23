@@ -4,8 +4,11 @@ import App from './App.vue';
 import VueRouter from 'vue-router'
 import { routers } from "./router/index.js";
 import store from './vuex/index.js';
-import { Field } from 'vant'; import { Button } from 'vant';
-
+import { Field } from 'vant';
+import { Button } from 'vant';
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.use(Mint);
 Vue.use(Button);
 Vue.use(Field);
 Vue.use(Vuex);

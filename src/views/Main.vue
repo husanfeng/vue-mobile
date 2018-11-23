@@ -1,8 +1,8 @@
 <template>
     <div style="height:100%;">
-        <div>
+        <!-- <div>
             <loading v-model="isLoading"></loading>
-        </div>
+        </div> -->
         <div>
             <!-- <x-header style="background-color:#000;">
                 <p v-text="functionTitle"></p>

@@ -125,7 +125,22 @@
                 </div>
             </div>
             <div>
-                <group>
+                <mt-cell title="个人详情" to="/feedback-page" is-link>
+                    <img slot="icon" src="../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                </mt-cell>
+                <mt-cell title="帮助中心" to="/feedback-page" is-link>
+                    <img slot="icon" src="../../../static/u236.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                </mt-cell>
+                <mt-cell title="设置" to="/feedback-page" is-link>
+                    <img slot="icon" src="../../../static/u238.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                </mt-cell>
+                <mt-cell title="关于" to="/feedback-page" is-link>
+                    <img slot="icon" src="../../../static/u242.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                </mt-cell>
+                <mt-cell title="意见反馈" to="/feedback-page" is-link>
+                    <img slot="icon" src="../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
+                </mt-cell>
+                <!-- <group>
                     <cell title="个人详情" link="/feedback-page" is-link>
                         <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
                     </cell>
@@ -141,7 +156,8 @@
                     <cell title="意见反馈" link="/feedback-page" is-link>
                         <img slot="icon" width="20" style="display:block;margin-right:8px;" src="../../../static/u234.png">
                     </cell>
-                </group>
+                </group> -->
+
                 <div style="margin:8px 8px 55px 8px">
                     <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
                 </div>

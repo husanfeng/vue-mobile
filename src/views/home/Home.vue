@@ -1,5 +1,5 @@
 <template>
-    <div id="app" style="height:100%;">
+    <div style="height:100%;">
         <div>
             <loading v-model="isLoading"></loading>
         </div>
@@ -163,12 +163,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div v-show="isShowRouterView">
-            <x-header style="background-color:#000;">
-                <p v-text="functionTitle"></p>
-            </x-header>
-            <router-view></router-view>
-        </div> -->
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" v-show="isShowBar">
             <tabbar-item selected @on-item-click="onItemClickFunction">
                 <img slot="icon" src="../../../static/function_normal.png">
@@ -474,109 +468,109 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
-.demo-icon-22 {
-  font-family: "vux-demo";
-  font-size: 22px;
-  color: #888;
-}
+// .demo-icon-22 {
+//   font-family: "vux-demo";
+//   font-size: 22px;
+//   color: #888;
+// }
 
-.vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
-  color: #f70968;
-}
-.vux-demo-tabbar
-  .weui-tabbar_item.weui-bar__item_on
-  .vux-demo-tabbar-icon-home {
-  color: rgb(53, 73, 94);
-}
-.demo-icon-22:before {
-  content: attr(icon);
-}
-.vux-demo-tabbar-component {
-  background-color: #f70968;
-  color: #fff;
-  border-radius: 7px;
-  padding: 0 4px;
-  line-height: 14px;
-}
-.weui-tabbar__icon + .weui-tabbar__label {
-  margin-top: 0 !important;
-}
-.vux-demo-header-box {
-  z-index: 100;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-}
-@font-face {
-  font-family: "vux-demo"; /* project id 70323 */
-  src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot");
-  src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot?#iefix")
-      format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.woff") format("woff"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.svg#iconfont")
-      format("svg");
-}
-.demo-icon {
-  font-family: "vux-demo";
-  font-size: 20px;
-  color: #04be02;
-}
-.demo-icon-big {
-  font-size: 28px;
-}
-.demo-icon:before {
-  content: attr(icon);
-}
+// .vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
+//   color: #f70968;
+// }
+// .vux-demo-tabbar
+//   .weui-tabbar_item.weui-bar__item_on
+//   .vux-demo-tabbar-icon-home {
+//   color: rgb(53, 73, 94);
+// }
+// .demo-icon-22:before {
+//   content: attr(icon);
+// }
+// .vux-demo-tabbar-component {
+//   background-color: #f70968;
+//   color: #fff;
+//   border-radius: 7px;
+//   padding: 0 4px;
+//   line-height: 14px;
+// }
+// .weui-tabbar__icon + .weui-tabbar__label {
+//   margin-top: 0 !important;
+// }
+// .vux-demo-header-box {
+//   z-index: 100;
+//   position: absolute;
+//   width: 100%;
+//   left: 0;
+//   top: 0;
+// }
+// @font-face {
+//   font-family: "vux-demo";
+//   src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot");
+//   src: url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.eot?#iefix")
+//       format("embedded-opentype"),
+//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.woff") format("woff"),
+//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.ttf") format("truetype"),
+//     url("//at.alicdn.com/t/font_70323_wlronpvr565yiudi.svg#iconfont")
+//       format("svg");
+// }
+// .demo-icon {
+//   font-family: "vux-demo";
+//   font-size: 20px;
+//   color: #04be02;
+// }
+// .demo-icon-big {
+//   font-size: 28px;
+// }
+// .demo-icon:before {
+//   content: attr(icon);
+// }
 .router-view {
   width: 100%;
   top: 46px;
 }
-.vux-pop-out-enter-active,
-.vux-pop-out-leave-active,
-.vux-pop-in-enter-active,
-.vux-pop-in-leave-active {
-  will-change: transform;
-  transition: all 500ms;
-  height: 100%;
-  top: 46px;
-  position: absolute;
-  backface-visibility: hidden;
-  perspective: 1000;
-}
-.vux-pop-out-enter {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-}
-.vux-pop-out-leave-active {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
-}
-.vux-pop-in-enter {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
-}
-.vux-pop-in-leave-active {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-}
-.menu-title {
-  color: #888;
-}
+// .vux-pop-out-enter-active,
+// .vux-pop-out-leave-active,
+// .vux-pop-in-enter-active,
+// .vux-pop-in-leave-active {
+//   will-change: transform;
+//   transition: all 500ms;
+//   height: 100%;
+//   top: 46px;
+//   position: absolute;
+//   backface-visibility: hidden;
+//   perspective: 1000;
+// }
+// .vux-pop-out-enter {
+//   opacity: 0;
+//   transform: translate3d(-100%, 0, 0);
+// }
+// .vux-pop-out-leave-active {
+//   opacity: 0;
+//   transform: translate3d(100%, 0, 0);
+// }
+// .vux-pop-in-enter {
+//   opacity: 0;
+//   transform: translate3d(100%, 0, 0);
+// }
+// .vux-pop-in-leave-active {
+//   opacity: 0;
+//   transform: translate3d(-100%, 0, 0);
+// }
+// .menu-title {
+//   color: #888;
+// }
 
-.van-cell__title .van-icon {
-  font-size: 18px;
-}
-.van-nav-bar {
-  height: 46px;
-  position: relative;
-  -webkit-user-select: none;
-  user-select: none;
-  text-align: center;
-  line-height: 46px;
-  background-color: #dbdb70;
-}
+// .van-cell__title .van-icon {
+//   font-size: 18px;
+// }
+// .van-nav-bar {
+//   height: 46px;
+//   position: relative;
+//   -webkit-user-select: none;
+//   user-select: none;
+//   text-align: center;
+//   line-height: 46px;
+//   background-color: #dbdb70;
+// }
 .weui-grid {
   position: relative !important;
   float: left !important;
@@ -598,32 +592,32 @@ body {
   color: #1afa29 !important;
 }
 
-.flex-logo {
-  text-align: center;
-  margin-top: 30px;
-  img {
-    height: 120px;
-    width: 120px;
-    border-radius: 120px;
-  }
-}
+// .flex-logo {
+//   text-align: center;
+//   margin-top: 30px;
+//   img {
+//     height: 120px;
+//     width: 120px;
+//     border-radius: 120px;
+//   }
+// }
 
-.flex-function-img {
-  text-align: right;
-  margin-top: 30px;
-  img {
-    height: 40px;
-    width: 40px;
-  }
-}
-.flex-function-label {
-  margin-top: 30px;
-}
-.position-bottom {
-  position: fixed;
-  top: 60px;
-  //left: 1%;
-}
+// .flex-function-img {
+//   text-align: right;
+//   margin-top: 30px;
+//   img {
+//     height: 40px;
+//     width: 40px;
+//   }
+// }
+// .flex-function-label {
+//   margin-top: 30px;
+// }
+// .position-bottom {
+//   position: fixed;
+//   top: 60px;
+
+// }
 @-webkit-keyframes myfirst {
   0%,
   20%,
@@ -666,21 +660,21 @@ body {
     transform: translateX(15px);
   }
 }
-.next {
-  // .position-bottom;
-  .setarrow {
-    // position:relative;
-    .position-bottom;
-    font-size: 40px !important;
-    color: rgba(243, 244, 247, 0.8);
-    opacity: 0.8;
-    cursor: pointer;
-    animation: myfirst 5s infinite;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-}
+// .next {
+//   // .position-bottom;
+//   .setarrow {
+//     // position:relative;
+//     .position-bottom;
+//     font-size: 40px !important;
+//     color: rgba(243, 244, 247, 0.8);
+//     opacity: 0.8;
+//     cursor: pointer;
+//     animation: myfirst 5s infinite;
+//     @media screen and (max-width: 768px) {
+//       font-size: 20px;
+//     }
+//   }
+// }
 .van-swipe {
   overflow: hidden;
   position: relative;
@@ -716,24 +710,5 @@ body {
       }
     }
   }
-}
-.weui-cells {
-  /* margin-top: 1.17647059em; */
-  background-color: #ffffff !important;
-  /* line-height: 1.41176471; */
-  //   font-size: 20px !important;
-  overflow: hidden !important;
-  position: relative !important;
-}
-.weui-cell {
-  margin: 10px !important;
-  padding: 10px 15px !important;
-  position: relative !important;
-  display: -webkit-box !important;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-box-align: center !important;
-  -webkit-align-items: center !important;
-  align-items: center !important;
 }
 </style>

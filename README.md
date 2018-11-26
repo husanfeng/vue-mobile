@@ -23,9 +23,9 @@ ems-moblie 是一个webApp,使用的是vue全家桶。从架构搭建到组件�
 - 箭头动画
 ## 效果展示
 - 登录页展示
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/login-page.PNG?raw=true)
+![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/login-page.png?raw=true)
 - 首页展示
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/home-page.PNG?raw=true)
+![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/home-page.png?raw=true)
 - 我的页面
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/my-page.PNG?raw=true)
+![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/my-page.png?raw=true)
 - 后期持续更新功能页面

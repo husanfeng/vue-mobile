@@ -4,7 +4,7 @@
             <div class="my-module-img">
                 <img src="../../../../static/hsf.jpg" alt="">
                 <div class="my-module-text">
-                    <p>husanfeng</p>
+                    <p>{{userName}}</p>
                     <p>男 26</p>
                     <p>财务报账项目组前端开发</p>
                 </div>
@@ -37,7 +37,7 @@
 ;
 <script>
 import { XButton } from "vux";
-// import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   components: { XButton },
   data() {
@@ -65,14 +65,9 @@ export default {
   created() {},
 
   computed: {
-    // ...mapState({
-    //   route: state => state.route,
-    //   path: state => state.route.path,
-    //   deviceready: state => state.app.deviceready,
-    //   demoTop: state => state.vux.demoScrollTop,
-    //   isLoading: state => state.vux.isLoading,
-    //   direction: state => state.vux.direction
-    // }),
+    ...mapState({
+      userName: state => state.login.userName
+    })
   },
   watch: {
     $route(to, from) {}

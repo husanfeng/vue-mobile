@@ -13,6 +13,7 @@
 </template>
 <script>
 import { XHeader } from "vux";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     loginIn() {
-      if (this.username != "" || this.password != "") {
+      if (this.username != "" && this.password != "") {
         this.isLoading = true;
         sessionStorage.setItem("userName", this.username);
         sessionStorage.setItem("userToken", "iigslfdjzgertuq589e6uhgf"); // 生产一段随机数
@@ -38,6 +39,8 @@ export default {
         this.$router.push({
           name: "home-page"
         });
+
+        this.$store.dispatch("setUserName", this.username);
       }
     }
   },

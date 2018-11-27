@@ -1,27 +1,37 @@
 <template>
-    <div style="height:100%;">
-        <transition>
-            <van-swipe :autoplay="3000">
-                <van-swipe-item v-for="(image, index) in images" :key="index">
-                    <img :src="image" width="100%" style="overflow:hidden" />
-                </van-swipe-item>
-            </van-swipe>
-        </transition>
-        <transition>
-            <van-notice-bar mode="closeable">
-                华润医药商业-财务报账系统将于2019年3月份正式上线...
-            </van-notice-bar>
-        </transition>
-        <transition>
-            <grid :cols="3">
-                <grid-item :label="item.title" v-for="(item,index) in functionList" :key="index" @click.native="onItemClickImg">
-                    <img slot="icon" height="60px" width="60px" :src="item.icon">
-                </grid-item>
-            </grid>
-        </transition>
+  <div style="height:100%;">
+  
+    <van-swipe :autoplay="3000">
+      <van-swipe-item v-for="(image, index) in images" :key="index">
+        <img :src="image" width="100%" style="overflow:hidden">
+      </van-swipe-item>
+    </van-swipe>
+  
+    <van-notice-bar mode="closeable">华润医药商业-财务报账系统将于2019年3月份正式上线...</van-notice-bar>
+    
+    <grid :cols="3">
+      <grid-item
+        :label="item.title"
+        v-for="(item,index) in functionList"
+        :key="index"
+        @click.native="onItemClickImg"
+      >
+        <img slot="icon" height="60px" width="60px" :src="item.icon">
+      </grid-item>
+    </grid>
+    <div class="">
+      <highcharts-component :options="options"   ref="simpleChart"></highcharts-component>
+      <!-- <button @click="updateChart">更新图表</button> -->
     </div>
+ <div class="" style="margin:5px 0 58px 0">
+      <highcharts-component :options="options2"   ref="simpleChart"></highcharts-component>
+      <!-- <button @click="updateChart">更新图表</button> -->
+    </div>
+  </div>
 </template>
 <script>
+import HighchartsComponent from "../../../components/HighchartsComponent.vue";
+
 import {
   Radio,
   Group,
@@ -85,7 +95,8 @@ export default {
     GridItem,
     Flexbox,
     FlexboxItem,
-    XButton
+    XButton,
+    HighchartsComponent
   },
   data() {
     return {
@@ -116,7 +127,99 @@ export default {
       showMode: "push",
       showModeValue: "push",
       showPlacement: "left",
-      showPlacementValue: "left"
+      showPlacementValue: "left",
+       options: {
+        xAxis: {
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ]
+        },
+        yAxis: {
+          title: {
+            text: "Temperature"
+          },
+          lineWidth: 2,
+          lineColor: "#F33",
+          id: "temperature-axis"
+        },
+        series: [
+          {
+            name: "Temperature",
+            data: [
+              7.0,
+              6.9,
+              9.5,
+              14.5,
+              18.2,
+              21.5,
+              25.2,
+              26.5,
+              23.3,
+              18.3,
+              13.9,
+              9.6
+            ],
+            color: "#F33"
+          }
+        ]
+      },
+       options2: {
+        xAxis: {
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ]
+        },
+        yAxis: {
+          title: {
+            text: "Temperature"
+          },
+          lineWidth: 2,
+          lineColor: "#00ffff",
+          id: "temperature-axis"
+        },
+        series: [
+          {
+            name: "Temperature",
+            data: [
+              27.0,
+              6.9,
+              29.5,
+              124.5,
+              18.2,
+              21.5,
+              252.2,
+              26.5,
+              232.3,
+              128.3,
+              123.9,
+              9.6
+            ],
+            color: "#00ffff"
+          }
+        ]
+      },
     };
   },
   methods: {

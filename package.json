@@ -13,6 +13,8 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "highcharts": "^v5.0.14",
+    "jquery": "^3.2.1",
     "mint-ui": "^2.2.13",
     "vant": "^1.0.1",
     "vant-css": "^1.0.1",

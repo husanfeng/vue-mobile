@@ -21,11 +21,12 @@
 <script>
 import { Toast } from 'mint-ui'
 import { XHeader } from "vux";
+
 import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    XHeader
+    XHeader,
   },
   data() {
     return {
@@ -41,8 +42,8 @@ export default {
         this.isLoading = true;
         sessionStorage.setItem("userName", this.username);
         sessionStorage.setItem("userToken", "iigslfdjzgertuq589e6uhgf"); // 生产一段随机数
-        this.$store.commit("setUserName", this.username);
-        this.$store.commit("setUserToken", "iigslfdjzgertuq589e6uhgf");
+        // this.$store.commit("setUserName", this.username);
+        // this.$store.commit("setUserToken", "iigslfdjzgertuq589e6uhgf");
 
         this.$router.push({
           name: "home-page"
@@ -117,6 +118,9 @@ export default {
 .van-button--normal {
   padding: 0 15px;
   font-size: 16px;
+}
+.van-cell-group{
+  background-color: rgba(0, 0, 0, 0)
 }
 .van-cell {
   width: 100%;

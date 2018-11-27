@@ -20,16 +20,8 @@
         {
             "name": "vux-ui"
         },
-        "transform-runtime",
-        [
-            "import",
-            [
-                {
-                    "libraryName": "vant",
-                    "style": true
-                }
-            ]
-        ]
+        "transform-runtime"
+         
     ],
     "env": {
         "test": {

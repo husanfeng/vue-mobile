@@ -22,7 +22,7 @@ const RouterConfig = {
 
 const router = new VueRouter(RouterConfig);
 router.beforeEach((to, from, next) => {
-    // debugger
+
     let isLogin = sessionStorage.getItem("userToken")
     if (isLogin && to.path != '/login-page') {
         next()

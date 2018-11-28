@@ -23,8 +23,29 @@ export const appRouter = {
             component: resolve => { require(['../views/drawer/Feedback.vue'], resolve); }
         },
         {
+            path: 'reimbursement-page',
+            name: 'reimbursement-page',
+            meta: '报账单',
+            component: resolve => { require(['../views/ems/reimbursement/Reimbursement.vue'], resolve); }
+        },
+        {
+            path: 'pending-page',
+            name: 'pending-page',
+            meta: '待处理',
+            // component: resolve => { require(['../views/ems/disposalpending/Pending.vue'], resolve); }
+            component: resolve => { require(['../views/ems/pending/Pending.vue'], resolve); }
+
+        },
+        {
+            path: 'processed-page',
+            name: 'processed-page',
+            meta: '已处理',
+            component: resolve => { require(['../views/ems/processed/Processed.vue'], resolve); }
+        },
+        {
             path: 'home-page',
             name: 'home-page',
+            meta: '首页',
             component: resolve => { require(['../views/home/Home.vue'], resolve); }
         },
     ]

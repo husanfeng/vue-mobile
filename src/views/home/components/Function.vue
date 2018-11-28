@@ -21,7 +21,7 @@
         :label="item.title"
         v-for="(item,index) in functionList"
         :key="index"
-        @click.native="onItemClickImg"
+        @click.native="onItemClickImg(item.functionUrl)"
       >
         <img
           slot="icon"
@@ -131,13 +131,6 @@ export default {
   },
   data() {
     return {
-      title: "财务报账系统",
-      functionTitle: "TITLE",
-      isShowBar: true,
-      isShowFunction: true,
-      isShowProcess: false,
-      isShowMy: false,
-      isShowRouterView: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -145,20 +138,6 @@ export default {
         "https://picsum.photos/400/180/?image=4"
       ],
       functionList: [],
-      isLoading: false,
-      path: "",
-      entryUrl: document.location.href,
-      showMenu: false,
-      menus: {
-        "language.noop": '<span class="menu-title">角色切换</span>',
-        "zh-CN": "管理员",
-        en: "部门领导"
-      },
-      drawerVisibility: false,
-      showMode: "push",
-      showModeValue: "push",
-      showPlacement: "left",
-      showPlacementValue: "left",
       options: {
         title: {
           text: "2018年1-8月份单据量"
@@ -374,9 +353,9 @@ export default {
     };
   },
   methods: {
-    onItemClickImg() {
+    onItemClickImg(url) {
       this.$router.push({
-        name: "feedback-page"
+        name: url
       });
     }
     // ...mapActions(["updateDemoPosition"])
@@ -393,28 +372,34 @@ export default {
   created() {
     this.functionList = [
       {
-        title: "我的申请",
-        icon: "./static/icon_ehr_tool_blood_pressure.png"
+        title: "报账单",
+        icon: "./static/icon_ehr_tool_blood_pressure.png",
+        functionUrl: "reimbursement-page"
       },
       {
-        title: "待审批",
-        icon: "./static/icon_ehr_tool_body_temerature.png"
+        title: "待处理",
+        icon: "./static/icon_ehr_tool_body_temerature.png",
+        functionUrl: "pending-page"
       },
       {
-        title: "已审批",
-        icon: "./static/icon_ehr_tool_diet.png"
+        title: "已处理",
+        icon: "./static/icon_ehr_tool_diet.png",
+        functionUrl: "processed-page"
       },
       {
-        title: "已提交",
-        icon: "./static/icon_ehr_tool_glucose.png"
+        title: "会计分组",
+        icon: "./static/icon_ehr_tool_glucose.png",
+        functionUrl: "reimbursement-page"
       },
       {
-        title: "草稿单",
-        icon: "./static/icon_ehr_tool_heart_rate.png"
+        title: "会计日历",
+        icon: "./static/icon_ehr_tool_heart_rate.png",
+        functionUrl: "reimbursement-page"
       },
       {
-        title: "作废单",
-        icon: "./static/icon_ehr_tool_sport.png"
+        title: "任务池",
+        icon: "./static/icon_ehr_tool_sport.png",
+        functionUrl: "reimbursement-page"
       }
     ];
   },

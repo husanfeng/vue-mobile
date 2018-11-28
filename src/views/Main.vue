@@ -1,34 +1,40 @@
 <template>
-    <div style="height:100%;">
-        <!-- <div>
+  <div style="height:100%;">
+    <!-- <div>
             <loading v-model="isLoading"></loading>
         </div> -->
-        <div>
-            <!-- <x-header style="background-color:#000;">
-                <p v-text="functionTitle"></p>
-            </x-header> -->
-            <router-view></router-view>
-        </div>
+    <div>
 
+      <router-view></router-view>
     </div>
+
+  </div>
 </template>
 <script>
+// import { XHeader } from "vux";
 export default {
+  components: {
+    // XHeader
+  },
   data() {
     return {};
   },
   methods: {},
   mounted() {},
+  computed: {},
   beforeDestroy() {},
   created() {},
   computed: {},
   watch: {
-    $route(to, from) {
-      if (to.path != "/home-page") {
-        this.functionTitle = to.meta;
-      } else {
-      }
-    }
+    // $route(to, from) {
+    //   //   debugger;
+    //   if (to.path != "/home-page") {
+    //     this.isShow = true;
+    //     this.functionTitle = to.meta;
+    //   } else {
+    //     this.isShow = false;
+    //   }
+    // }
   }
 };
 </script>

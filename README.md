@@ -22,6 +22,7 @@ ems-moblie 是一个webApp,使用的是vue全家桶。从架构搭建到组件�
 - 底部tab切换
 - 消息滚动效果
 - 箭头动画
+- heightchart图表封装
 ## 效果展示
 - 加载页展示1
 ![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/loading-page1.png?raw=true)

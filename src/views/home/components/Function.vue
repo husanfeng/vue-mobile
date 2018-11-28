@@ -1,14 +1,21 @@
 <template>
   <div style="height:100%;">
-  
+
     <van-swipe :autoplay="3000">
-      <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img :src="image" width="100%" style="overflow:hidden">
+      <van-swipe-item
+        v-for="(image, index) in images"
+        :key="index"
+      >
+        <img
+          :src="image"
+          width="100%"
+          style="overflow:hidden"
+        >
       </van-swipe-item>
     </van-swipe>
-  
+
     <van-notice-bar mode="closeable">华润医药商业-财务报账系统将于2019年3月份正式上线...</van-notice-bar>
-    
+
     <grid :cols="3">
       <grid-item
         :label="item.title"
@@ -16,22 +23,46 @@
         :key="index"
         @click.native="onItemClickImg"
       >
-        <img slot="icon" height="60px" width="60px" :src="item.icon">
+        <img
+          slot="icon"
+          height="60px"
+          width="60px"
+          :src="item.icon"
+        >
       </grid-item>
     </grid>
     <div class="">
-      <highcharts-component :options="options"   ref="simpleChart"></highcharts-component>
+      <highcharts-component
+        :options="options"
+        ref="simpleChart"
+      ></highcharts-component>
       <!-- <button @click="updateChart">更新图表</button> -->
     </div>
- <div class="" style="margin:5px 0 58px 0">
-      <highcharts-component :options="options2"   ref="simpleChart"></highcharts-component>
+    <div
+      class=""
+      style="margin:5px 0 0 0"
+    >
+      <highcharts-component
+        :options="options2"
+        ref="simpleChart"
+      ></highcharts-component>
+      <!-- <button @click="updateChart">更新图表</button> -->
+    </div>
+    <div
+      class=""
+      style="margin:5px 0 58px 0"
+    >
+      <highcharts-component
+        :options="options3"
+        ref="simpleChart"
+      ></highcharts-component>
       <!-- <button @click="updateChart">更新图表</button> -->
     </div>
   </div>
 </template>
 <script>
 import HighchartsComponent from "../../../components/HighchartsComponent.vue";
-
+import Highcharts from "highcharts/highstock";
 import {
   Radio,
   Group,
@@ -128,98 +159,217 @@ export default {
       showModeValue: "push",
       showPlacement: "left",
       showPlacementValue: "left",
-       options: {
-        xAxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
-          ]
+      options: {
+        title: {
+          text: "2018年1-8月份单据量"
         },
+        credits: {
+          enabled: false
+        },
+        subtitle: {
+          text: "2018年下单量"
+        },
+        // colors: [
+        //   "#7cb5ec",
+        //   "#434348",
+        //   "#90ed7d",
+        //   "#f7a35c",
+        //   "#8085e9",
+        //   "#f15c80",
+        //   "#e4d354",
+        //   "#8085e8",
+        //   "#8d4653",
+        //   "#91e8e1"
+        // ],
         yAxis: {
           title: {
-            text: "Temperature"
-          },
-          lineWidth: 2,
-          lineColor: "#F33",
-          id: "temperature-axis"
+            text: "单据量"
+          }
+        },
+        legend: {
+          layout: "vertical",
+          align: "right",
+          verticalAlign: "middle"
+        },
+        xAxis: {
+          categories: [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月"
+          ]
+        },
+        plotOptions: {
+          series: {
+            label: {
+              connectorAllowed: false
+            }
+            // pointStart: 1
+          }
         },
         series: [
           {
-            name: "Temperature",
-            data: [
-              7.0,
-              6.9,
-              9.5,
-              14.5,
-              18.2,
-              21.5,
-              25.2,
-              26.5,
-              23.3,
-              18.3,
-              13.9,
-              9.6
-            ],
-            color: "#F33"
+            name: "差旅费",
+            color: "#f15c80",
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+          },
+          {
+            name: "借还款",
+            color: "#f7a35c",
+            data: [24916, 24064, 39742, 29851, 32490, 30282, 38121, 80434]
+          },
+          {
+            name: "招待费",
+            color: "#8085e9",
+            data: [31744, 47722, 36005, 59771, 40185, 84377, 32147, 59387]
           }
-        ]
+        ],
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500
+              },
+              chartOptions: {
+                legend: {
+                  layout: "horizontal",
+                  align: "center",
+                  verticalAlign: "bottom"
+                }
+              }
+            }
+          ]
+        }
       },
-       options2: {
+      options2: {
+        chart: {
+          type: "column"
+        },
+        credits: {
+          enabled: false
+        },
+
+        title: {
+          text: "2018年1-8月份单据量"
+        },
+        subtitle: {
+          text: "2018年下单量"
+        },
         xAxis: {
           categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
-          ]
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月"
+          ],
+          crosshair: true
         },
         yAxis: {
+          min: 0,
           title: {
-            text: "Temperature"
-          },
-          lineWidth: 2,
-          lineColor: "#00ffff",
-          id: "temperature-axis"
+            text: "下单量"
+          }
+        },
+        tooltip: {
+          // head + 每个 point + footer 拼接成完整的 table
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            borderWidth: 0
+          }
         },
         series: [
           {
-            name: "Temperature",
-            data: [
-              27.0,
-              6.9,
-              29.5,
-              124.5,
-              18.2,
-              21.5,
-              252.2,
-              26.5,
-              232.3,
-              128.3,
-              123.9,
-              9.6
-            ],
-            color: "#00ffff"
+            name: "差旅费",
+            color: "#f15c80",
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+          },
+          {
+            name: "借还款",
+            color: "#f7a35c",
+            data: [24916, 24064, 39742, 29851, 32490, 30282, 38121, 80434]
+          },
+          {
+            name: "招待费",
+            color: "#8085e9",
+            data: [31744, 47722, 36005, 59771, 40185, 84377, 32147, 59387]
           }
         ]
       },
+      options3: {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: "pie"
+        },
+        credits: {
+          enabled: false
+        },
+
+        title: {
+          text: "2018年1-8月份单据量"
+        },
+        tooltip: {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+              style: {
+                color:
+                  (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                  "black"
+              }
+            }
+          }
+        },
+        series: [
+          {
+            name: "Brands",
+            colorByPoint: true,
+            data: [
+              {
+                name: "差旅费",
+                color: "#f15c80",
+                y: 50
+                // sliced: true,
+                // selected: true
+              },
+              {
+                name: "借还款",
+                color: "#f7a35c",
+                y: 30
+              },
+              {
+                name: "招待费",
+                color: "#8085e9",
+                y: 20
+              }
+            ]
+          }
+        ]
+      }
     };
   },
   methods: {

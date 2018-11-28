@@ -1,35 +1,67 @@
 <template>
-    <div style="height:100%;">
-        <div>
-            <loading v-model="isLoading"></loading>
-        </div>
-        <div v-show="isShowFunction">
-            <Function></Function>
-        </div>
-        <div v-show="isShowProcess">
-            <Process></Process>
-        </div>
-        <div v-show="isShowMy">
-            <My></My>
-        </div>
-        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" v-show="isShowBar">
-            <tabbar-item selected @on-item-click="onItemClickFunction">
-                <img slot="icon" src="../../../static/function_normal.png">
-                <img slot="icon-active" src="../../../static/function_pressed.png">
-                <span slot="label">首页</span>
-            </tabbar-item>
-            <tabbar-item @on-item-click="onItemClickProcess">
-                <img slot="icon" src="../../../static/order_normal.png">
-                <img slot="icon-active" src="../../../static/order_pressed.png">
-                <span slot="label">流程</span>
-            </tabbar-item>
-            <tabbar-item @on-item-click="onItemClickMy">
-                <img slot="icon" src="../../../static/my_normal.png">
-                <img slot="icon-active" src="../../../static/my_pressed.png">
-                <span slot="label">我的</span>
-            </tabbar-item>
-        </tabbar>
+  <div style="height:100%;">
+    <div>
+      <loading v-model="isLoading"></loading>
     </div>
+    <div v-if="isShowFunction">
+      <Function></Function>
+    </div>
+    <div v-show="isShowProcess">
+      <Process></Process>
+    </div>
+    <div v-show="isShowMy">
+      <My></My>
+    </div>
+    <tabbar
+      class="vux-demo-tabbar"
+      icon-class="vux-center"
+      slot="bottom"
+      v-show="isShowBar"
+    >
+      <tabbar-item
+        :selected='isShowFunction'
+        @on-item-click="onItemClickFunction"
+      >
+        <img
+          slot="icon"
+          src="../../../static/function_normal.png"
+        >
+        <img
+          slot="icon-active"
+          src="../../../static/function_pressed.png"
+        >
+        <span slot="label">首页</span>
+      </tabbar-item>
+      <tabbar-item
+        :selected='isShowProcess'
+        @on-item-click="onItemClickProcess"
+      >
+        <img
+          slot="icon"
+          src="../../../static/order_normal.png"
+        >
+        <img
+          slot="icon-active"
+          src="../../../static/order_pressed.png"
+        >
+        <span slot="label">流程</span>
+      </tabbar-item>
+      <tabbar-item
+        :selected='isShowMy'
+        @on-item-click="onItemClickMy"
+      >
+        <img
+          slot="icon"
+          src="../../../static/my_normal.png"
+        >
+        <img
+          slot="icon-active"
+          src="../../../static/my_pressed.png"
+        >
+        <span slot="label">我的</span>
+      </tabbar-item>
+    </tabbar>
+  </div>
 </template>
 
 <script>
@@ -57,7 +89,7 @@ import {
 import Function from "./components/Function.vue";
 import My from "./components/My.vue";
 import Process from "./components/Process";
-// import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   directives: {},
   components: {
@@ -88,9 +120,9 @@ export default {
       title: "财务报账系统",
       functionTitle: "TITLE",
       isShowBar: true,
-      isShowFunction: true,
-      isShowProcess: false,
-      isShowMy: false,
+      //   isShowFunction: true,
+      //   isShowProcess: false,
+      //   isShowMy: false,
       isShowRouterView: false,
       images: [
         "https://picsum.photos/400/180/?image=1",
@@ -135,19 +167,13 @@ export default {
       });
     },
     onItemClickFunction() {
-      this.isShowFunction = true;
-      this.isShowProcess = false;
-      this.isShowMy = false;
+      this.onItemClickFunction();
     },
     onItemClickProcess() {
-      this.isShowFunction = false;
-      this.isShowProcess = true;
-      this.isShowMy = false;
+      this.onItemClickProcess();
     },
     onItemClickMy() {
-      this.isShowFunction = false;
-      this.isShowProcess = false;
-      this.isShowMy = true;
+      this.onItemClickMy();
     },
     onShowModeChange(val) {
       /** hide drawer before changing showMode **/
@@ -169,8 +195,17 @@ export default {
     changeLocale(locale) {
       this.$i18n.set(locale);
       this.$locale.set(locale);
-    }
-    // ...mapActions(["updateDemoPosition"])
+    },
+    // ...mapActions([
+    //   "onItemClickFunction",
+    //   "onItemClickProcess",
+    //   "onItemClickMy"
+    // ]),
+    ...mapMutations([
+      "onItemClickFunction",
+      "onItemClickProcess",
+      "onItemClickMy"
+    ])
   },
   mounted() {
     // this.handler = () => {
@@ -213,14 +248,17 @@ export default {
   },
 
   computed: {
-    // ...mapState({
-    //   route: state => state.route,
-    //   path: state => state.route.path,
-    //   deviceready: state => state.app.deviceready,
-    //   demoTop: state => state.vux.demoScrollTop,
-    //   isLoading: state => state.vux.isLoading,
-    //   direction: state => state.vux.direction
-    // }),
+    ...mapState({
+      isShowFunction: state => state.home.isShowFunction,
+      isShowProcess: state => state.home.isShowProcess,
+      isShowMy: state => state.home.isShowMy
+      //   route: state => state.route,
+      //   path: state => state.route.path,
+      //   deviceready: state => state.app.deviceready,
+      //   demoTop: state => state.vux.demoScrollTop,
+      //   isLoading: state => state.vux.isLoading,
+      //   direction: state => state.vux.direction
+    }),
 
     // isShowBar() {
     //   if (this.entryUrl.indexOf("hide-tab-bar") > -1) {

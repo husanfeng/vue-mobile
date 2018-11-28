@@ -1,22 +1,18 @@
+import state from "./state";
 export default {
-    setIsShowFunction(state) {
+    onItemClickFunction() {
         state.isShowFunction = true;
         state.isShowProcess = false;
-        state.isShowMy = false
+        state.isShowMy = false;
     },
-    setIsShowProcess(state) {
+    onItemClickProcess() {
         state.isShowFunction = false;
         state.isShowProcess = true;
-        state.isShowMy = false
+        state.isShowMy = false;
     },
-    setIsShowMy(state) {
+    onItemClickMy() {
         state.isShowFunction = false;
         state.isShowProcess = false;
-        state.isShowMy = true
-    },
-
-    setIsDrawerVisibility(state) {
-        //   debugger
-        state.isDrawerVisibility = !state.isDrawerVisibility
+        state.isShowMy = true;
     },
 }

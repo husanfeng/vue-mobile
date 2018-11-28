@@ -2,28 +2,51 @@
   <div>
     <div class="box">
       <h3>股票图</h3>
-      <div id="container" class="container"></div>
-      <button @click="updateStcockChart" :disabled="!stockChart">更新数据范围</button>
+      <div
+        id="container"
+        class="container"
+      ></div>
+      <button
+        @click="updateStcockChart"
+        :disabled="!stockChart"
+      >更新数据范围</button>
     </div>
 
     <div class="box">
       <h3>
         更多图表类型：
-        <select @change="moreChart()" v-model="type">
-          <option v-for="s in moreSamples" :key="s.code" :value="s.code">{{s.name}}</option>
+        <select
+          @change="moreChart()"
+          v-model="type"
+        >
+          <option
+            v-for="s in moreSamples"
+            :key="s.code"
+            :value="s.code"
+          >{{s.name}}</option>
         </select>
       </h3>
-      <div id="highcharts-more" class="container"></div>
+      <div
+        id="highcharts-more"
+        class="container"
+      ></div>
     </div>
 
     <div class="box">
       <h3>地图</h3>
-      <div id="highmaps" class="container"></div>
+      <div
+        id="highmaps"
+        class="container"
+      ></div>
     </div>
 
     <div class="box">
       <h3>使用封装的组件生产</h3>
-      <highcharts-component :options="options" :styles="styles" ref="simpleChart"></highcharts-component>
+      <highcharts-component
+        :options="options"
+        :styles="styles"
+        ref="simpleChart"
+      ></highcharts-component>
       <button @click="updateChart">更新图表</button>
     </div>
   </div>
@@ -596,9 +619,9 @@ export default {
 .box {
   width: 100%;
   height: 400px;
-//   display: inline-block;
-//   border: 1px solid #ccc;
-margin:5px;
+  //   display: inline-block;
+  //   border: 1px solid #ccc;
+  margin: 5px;
   overflow: hidden;
   position: relative;
 

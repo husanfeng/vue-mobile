@@ -4,7 +4,7 @@
     </a>
 </p>
 
-# ems-mobile
+# ems-mobile(扫上方二维码即可访问)
 ## 在线预览 https://husanfeng.github.io/ems-mobile/dist/index.html#/
 ## 当前版本:v1.0.0
 ## install dependencies

@@ -1,8 +1,8 @@
 <p align="center">
     <a href="https://husanfeng.github.io/ems-mobile/dist/index.html#/">
         <img width="200" src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/sweep-code.jpg?raw=true">
-      <h5>扫码访问</h5>
     </a>
+    <h5>扫上方二维码即可访问</h5>
 </p>
 
 # ems-mobile

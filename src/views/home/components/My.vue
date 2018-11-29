@@ -1,43 +1,99 @@
 <template>
-    <div class="my-module">
-        <div class="my-module-border">
-            <div class="my-module-img">
-                <img src="../../../../static/hsf.jpg" alt="">
-                <div class="my-module-text">
-                    <p>{{userName}}</p>
-                    <p>男 26</p>
-                    <p>财务报账项目组前端开发</p>
-                </div>
-            </div>
+  <div class="my-module">
+    <div class="my-module-border">
+      <div class="my-module-img">
+        <img
+          src="../../../../static/hsf.jpg"
+          alt=""
+        >
+        <div class="my-module-text">
+          <p>{{userName}}</p>
+          <p>男 26</p>
+          <p>财务报账项目组前端开发</p>
         </div>
-        <div>
-            <mt-cell title="个人详情" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/person.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-            </mt-cell>
-            <mt-cell title="帮助中心" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/u236.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-            </mt-cell>
-            <mt-cell title="设置" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/u238.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-            </mt-cell>
-            <mt-cell title="关于" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/u242.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-            </mt-cell>
-            <mt-cell title="意见反馈" to="/feedback-page" is-link>
-                <img slot="icon" src="../../../../static/u234.png" width="24" height="24" style="margin:0px 5px 0px 10px">
-            </mt-cell>
-
-            <div style="margin:8px 8px 55px 8px">
-                <x-button type="warn" @click.native="loginOut">退出登陆</x-button>
-            </div>
-        </div>
+      </div>
     </div>
+    <div>
+      <mt-cell
+        title="个人详情"
+        to="/feedback-page"
+        is-link
+      >
+        <img
+          slot="icon"
+          src="../../../../static/person.png"
+          width="24"
+          height="24"
+          style="margin:0px 5px 0px 10px"
+        >
+      </mt-cell>
+      <mt-cell
+        title="帮助中心"
+        to="/feedback-page"
+        is-link
+      >
+        <img
+          slot="icon"
+          src="../../../../static/u236.png"
+          width="24"
+          height="24"
+          style="margin:0px 5px 0px 10px"
+        >
+      </mt-cell>
+      <mt-cell
+        title="设置"
+        to="/feedback-page"
+        is-link
+      >
+        <img
+          slot="icon"
+          src="../../../../static/u238.png"
+          width="24"
+          height="24"
+          style="margin:0px 5px 0px 10px"
+        >
+      </mt-cell>
+      <mt-cell
+        title="关于"
+        to="/feedback-page"
+        is-link
+      >
+        <img
+          slot="icon"
+          src="../../../../static/u242.png"
+          width="24"
+          height="24"
+          style="margin:0px 5px 0px 10px"
+        >
+      </mt-cell>
+      <mt-cell
+        title="意见反馈"
+        to="/feedback-page"
+        is-link
+      >
+        <img
+          slot="icon"
+          src="../../../../static/u234.png"
+          width="24"
+          height="24"
+          style="margin:0px 5px 0px 10px"
+        >
+      </mt-cell>
+
+      <div style="margin:8px 8px 55px 8px">
+        <x-button
+          type="warn"
+          @click.native="loginOut"
+        >退出登陆</x-button>
+      </div>
+    </div>
+  </div>
 
 </template>
 ;
 <script>
 import { XButton } from "vux";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   components: { XButton },
   data() {
@@ -47,11 +103,17 @@ export default {
     loginOut() {
       sessionStorage.setItem("userName", "");
       sessionStorage.setItem("userToken", ""); // 生产一段随机数
+      this.onItemClickFunction();
+      //   this.$store.dispatch("setUserName", sessionStorage.getItem("userName"));
       this.$router.push({
         name: "login_page"
       });
-    }
-    // ...mapActions(["updateDemoPosition"])
+    },
+    ...mapMutations("home", [
+      "onItemClickFunction",
+      "onItemClickProcess",
+      "onItemClickMy"
+    ])
   },
   mounted() {
     // this.handler = () => {
@@ -65,8 +127,8 @@ export default {
   created() {},
 
   computed: {
-    ...mapState({
-      userName: state => state.login.userName
+    ...mapState("login", {
+      userName: state => state.userName
     })
   },
   watch: {

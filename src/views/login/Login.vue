@@ -3,7 +3,12 @@
     <div class="login-input">
       <p class="login-text">欢迎登陆</p>
       <van-cell-group>
-        <van-field v-model="username" clearable label="用户名" placeholder="请输入用户名"/>
+        <van-field
+          v-model="username"
+          clearable
+          label="用户名"
+          placeholder="请输入用户名"
+        />
         <van-field
           v-model="password"
           clearable
@@ -12,28 +17,33 @@
           placeholder="请输入密码"
           style="marginTop:10px"
         />
-        <van-button type="primary" :loading="isLoading" style="marginTop:30px" @click="loginIn">登录</van-button>
+        <van-button
+          type="primary"
+          :loading="isLoading"
+          style="marginTop:30px"
+          @click="loginIn"
+        >登录</van-button>
       </van-cell-group>
     </div>
   </div>
   <!-- </div> -->
 </template>
 <script>
-import { Toast } from 'mint-ui'
+import { Toast } from "mint-ui";
 import { XHeader } from "vux";
 
 import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    XHeader,
+    XHeader
   },
   data() {
     return {
       title: "title",
       isLoading: false,
-      username: "",
-      password: ""
+      username: "husanfeng",
+      password: "123456"
     };
   },
   methods: {
@@ -119,8 +129,8 @@ export default {
   padding: 0 15px;
   font-size: 16px;
 }
-.van-cell-group{
-  background-color: rgba(0, 0, 0, 0)
+.van-cell-group {
+  background-color: rgba(0, 0, 0, 0);
 }
 .van-cell {
   width: 100%;

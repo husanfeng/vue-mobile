@@ -1,8 +1,8 @@
 export default {
-    setUserName({ commit }, param) {
+    // setUserName({ commit }, param) {
 
-    },
-    setUserToken({ commit }, param) {
+    // },
+    // setUserToken({ commit }, param) {
 
-    }
+    // }
 }

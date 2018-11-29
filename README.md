@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://husanfeng.github.io/ems-mobile/dist/index.html#/">
-        <img width="200" src="https://cn.vuejs.org/images/logo.png">
+        <img width="200" src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/sweep-code.jpg?raw=true">
     </a>
 </p>
 

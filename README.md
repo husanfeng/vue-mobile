@@ -1,10 +1,11 @@
 <p align="center">
     <a href="https://husanfeng.github.io/ems-mobile/dist/index.html#/">
-        <img width="200" src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/sweep-code.jpg?raw=true">
+        <img width="200" src="https://cn.vuejs.org/images/logo.png">
     </a>
 </p>
-# ems-mobile(扫上方二维码即可访问)
-## 在线预览(pc端访问可将浏览器设置为手机模式) https://husanfeng.github.io/ems-mobile/dist/index.html#/
+
+# ems-mobile
+## 在线预览 https://husanfeng.github.io/ems-mobile/dist/index.html#/
 ## 当前版本:v1.0.0
 ## install dependencies
 npm install

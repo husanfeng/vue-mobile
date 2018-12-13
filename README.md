@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://husanfeng.github.io/vue-mobile/dist/index.html#/">
-        <img width="200" src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/sweep-code.jpg?raw=true">
+        <img width="200" src="https://github.com/husanfeng/vue-mobile/blob/master/static/showPage/sweep-code.png?raw=true">
     </a>
 </p>
 

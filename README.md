@@ -4,7 +4,7 @@
     </a>
 </p>
 
-# ems-mobile(扫上方二维码即可访问)
+# vue-mobile(扫上方二维码即可访问)
 ## 在线预览 https://husanfeng.github.io/vue-mobile/dist/index.html#/
 ## 当前版本:v1.0.0
 ## install dependencies
@@ -14,7 +14,7 @@ npm run dev
 ## build for production with minification
 npm run build
 ## 简介
-ems-moblie 是一个webApp,使用的是vue全家桶。从架构搭建到组件封装，再到业务功能植入。
+vue-moblie 是一个webApp,使用的是vue全家桶。从架构搭建到组件封装，再到业务功能植入。
 ## 功能
 - 加载资源时的等待页面
 - 侧滑页面

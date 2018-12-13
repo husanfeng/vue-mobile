@@ -26,14 +26,10 @@ ems-moblie 是一个webApp,使用的是vue全家桶。从架构搭建到组件�
 ## 效果展示
 #### 加载页展示
 <img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/loading-page1.png?raw=true" width="365" height="619"/> <img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/loading-page2.png?raw=true" width="365" height="619"/>
-- 登录页展示
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/login-page.png?raw=true)
-- 首页展示
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/home-page.png?raw=true)
-- 我的页面
+#### 登录页及首页
+<img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/login-page.png?raw=true" width="365" height="619"/> <img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/home-page.png?raw=true" width="365" height="619"/>
+####  我的页面
 ![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/my-page.png?raw=true)
-- 图表页面1
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/char1.png?raw=true)
-- 图表页面2
-![image](https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/char2.png?raw=true)
+####  图表页面
+<img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/char1.png?raw=true" width="365" height="619"/> <img src="https://github.com/husanfeng/ems-mobile/blob/master/static/showPage/char2.png?raw=true" width="365" height="619"/>
 - 后期持续更新功能页面

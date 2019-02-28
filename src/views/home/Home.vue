@@ -12,6 +12,7 @@
     <div v-show="isShowMy">
       <My></My>
     </div>
+    
     <tabbar
       class="vux-demo-tabbar"
       icon-class="vux-center"

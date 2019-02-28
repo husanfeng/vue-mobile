@@ -21,14 +21,12 @@
         :label="item.title"
         v-for="(item,index) in functionList"
         :key="index"
-        @click.native="onItemClickImg(item.functionUrl)"
-      >
+        @click.native="onItemClickImg(item.functionUrl)">
         <img
           slot="icon"
           height="60px"
           width="60px"
-          :src="item.icon"
-        >
+          :src="item.icon">
       </grid-item>
     </grid>
     <div class="">
@@ -38,25 +36,22 @@
       ></highcharts-component>
       <!-- <button @click="updateChart">更新图表</button> -->
     </div>
-    <div
-      class=""
-      style="margin:5px 0 0 0"
-    >
+    <div class=""style="margin:5px 0 0 0">
       <highcharts-component
         :options="options2"
-        ref="simpleChart"
-      ></highcharts-component>
+        ref="simpleChart">
+      </highcharts-component>
       <!-- <button @click="updateChart">更新图表</button> -->
     </div>
-    <div
-      class=""
-      style="margin:5px 0 58px 0"
-    >
+    <div class=""style="margin:5px 0 58px 0">
       <highcharts-component
         :options="options3"
-        ref="simpleChart"
-      ></highcharts-component>
+        ref="simpleChart">
+      </highcharts-component>
       <!-- <button @click="updateChart">更新图表</button> -->
+    </div>
+    <div style="position: absolute;bottom: 80px; right: 20px;" @click="toTop()" v-show="isShowToTop">
+      <img width="50px" height="50px" src="../../../../static/btn_stick.png">
     </div>
   </div>
 </template>
@@ -131,6 +126,7 @@ export default {
   },
   data() {
     return {
+      isShowToTop:false,
       images: [
         "https://picsum.photos/400/180/?image=1",
         "https://picsum.photos/400/180/?image=2",
@@ -357,6 +353,21 @@ export default {
       this.$router.push({
         name: url
       });
+    },
+    toTop(){
+    //  alert("被点击!!!!!!");
+      console.log("被点击!!!!!!");
+      document.body.scrollTop = 0
+      // document.documentElement.scrollTop = 0
+    },
+    scrollToTop() { 
+　　  var scrollTop = document.body.scrollTop || document.documentElement.scrollTop; 
+      console.log(scrollTop)  
+      if(scrollTop > 299){
+        this.isShowToTop = true
+      }else{
+ this.isShowToTop = false
+      }
     }
     // ...mapActions(["updateDemoPosition"])
   },
@@ -367,8 +378,12 @@ export default {
     //     this.updateDemoPosition(this.box.scrollTop);
     //   }
     // };
+    window.addEventListener('scroll',this.scrollToTop,true)
   },
   beforeDestroy() {},
+  destroyed(){
+     window.removeEventListener('scroll', this.scrollToTop); 
+  },
   created() {
     this.functionList = [
       {

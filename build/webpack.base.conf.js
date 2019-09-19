@@ -5,7 +5,7 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 const vuxLoader = require('vux-loader')
-// const webpackConfig = originalConfig
+    // const webpackConfig = originalConfig
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
@@ -17,9 +17,8 @@ const webpackConfig = {
     output: {
         path: config.build.assetsRoot,
         filename: '[name].js',
-        publicPath: process.env.NODE_ENV === 'production'
-            ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
+        publicPath: process.env.NODE_ENV === 'production' ?
+            config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -30,7 +29,36 @@ const webpackConfig = {
         symlinks: false
     },
     module: {
-        rules: [
+        rules: [{
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    },
+                ],
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -45,14 +73,14 @@ const webpackConfig = {
                 test: /vue-preview.src.*?js$/,
                 loader: 'babel'
             },
-            {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
-                }
-            },
+            // {
+            //     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            //     loader: 'url-loader',
+            //     options: {
+            //         limit: 10000,
+            //         name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            //     }
+            // },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
